@@ -13,13 +13,14 @@ async function getVpns() {
 exports.createPages = async ({ actions: { createPage } }) => {
   // fetch data
   const allVpns = await getVpns();
+  const count = allVpns.length;
   // console.log(allVpns);
 
   // list all
   createPage({
     path: `/`,
     component: require.resolve('./src/templates/all.js'),
-    context: { allVpns },
+    context: { allVpns, count },
   });
 
   // each VPN
