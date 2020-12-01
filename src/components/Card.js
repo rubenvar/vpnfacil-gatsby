@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
+
 import PropTypes from 'prop-types';
 import {
   IconCertificate,
@@ -11,11 +12,14 @@ import {
 } from '@tabler/icons';
 import StarRating from 'react-star-ratings';
 
-// import StarRating from './StarRating';
 import StyledCard from './styles/StyledCard';
+import CardNumbers from './CardNumbers';
 
 export default function Card({ vpn }) {
   const {
+    countries,
+    servers,
+    devices,
     id,
     slug,
     name,
@@ -29,16 +33,18 @@ export default function Card({ vpn }) {
   } = vpn;
   const primary500 = 'hsl(270, 75%, 70%)';
 
+  const numbers = { countries, servers, devices };
+
   let spanish = false;
   if (appLanguage && appLanguage.includes('spanish')) spanish = true;
 
   return (
     <StyledCard>
-      <img />
+      <img src={`/logos/${id}.jpg`} alt={`logo de ${name}`} />
       <h2>
         <Link to={`/vpn/${slug}/`}>{name}</Link>
       </h2>
-      <div className="numbers" />
+      <CardNumbers numbers={numbers} />
       <ul>
         {moneyBack && (
           <li>
@@ -123,11 +129,17 @@ export default function Card({ vpn }) {
         )}
 
         {rating && (
-          <>
+          <li
+            style={{
+              justifyContent: `center`,
+              color: `#777`,
+              margin: `20px 0 0`,
+            }}
+          >
             <StarRating
               rating={rating / 20}
               starRatedColor="#ffcf00"
-              starEmptyColor="#aaa"
+              starEmptyColor="#777"
               starDimension="20px"
               starSpacing="0px"
               name={id}
@@ -135,7 +147,7 @@ export default function Card({ vpn }) {
               // style="justify-content: center;margin: 20px 0 0;" />
             />
             {rating / 20}
-          </>
+          </li>
         )}
       </ul>
 

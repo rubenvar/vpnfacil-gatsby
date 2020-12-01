@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 import List from '../components/List';
 import Layout from '../components/Layout';
+import Hero from '../components/Hero';
 
 export default function AllVpns({ pageContext: { allVpns } }) {
-  // console.log(allVpns);
-  if (!allVpns) return <p>what</p>;
   return (
     <Layout>
+      <Hero />
       <List vpns={allVpns} />
     </Layout>
   );

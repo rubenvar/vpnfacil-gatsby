@@ -27,9 +27,9 @@ const StyledList = styled.section`
   }
 `;
 
-export default function List({ vpns }) {
+export default function List({ vpns = [] }) {
   return (
-    <StyledList className="block-view">
+    <StyledList id="list" className="block-view">
       {vpns.map((vpn) => (
         <Card key={vpn.id} vpn={vpn} />
       ))}
