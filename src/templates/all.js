@@ -1,19 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import List from '../components/List';
 import Layout from '../components/Layout';
 import Hero from '../components/Hero';
+import Bar from '../components/Bar';
+import List from '../components/List';
 
-export default function AllVpns({ pageContext: { allVpns } }) {
+export default function AllVpns({ location, pageContext: { allVpns, count } }) {
   return (
-    <Layout>
+    <Layout location={location}>
       <Hero />
+      <Bar total={count} />
       <List vpns={allVpns} />
     </Layout>
   );
 }
 
 AllVpns.propTypes = {
+  location: PropTypes.object,
   pageContext: PropTypes.object,
 };
