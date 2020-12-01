@@ -14,6 +14,8 @@
   "dependencies": {
     "@tabler/icons": "^1.36.0",
     "axios": "^0.21.0",
+    "country-code-emoji": "^1.0.0",
+    "country-list-spanish": "^0.2.1",
     "dotenv": "^8.2.0",
     "fontsource-audiowide": "^3.0.9",
     "fontsource-quicksand": "^3.0.3",
