@@ -27,8 +27,14 @@ const StyledSort = styled.div`
 `;
 
 export default function Sort() {
-  const { decrease, toggleDecrease } = useContext(OrderContext);
-  console.log({ decrease });
+  const {
+    decrease,
+    toggleDecrease,
+    changeDecrease,
+    criteria,
+    changeCriteria,
+  } = useContext(OrderContext);
+
   const options = [
     { id: 1, label: 'Puntuación', value: 'rating' },
     { id: 2, label: 'Servidores', value: 'servers' },
@@ -36,6 +42,9 @@ export default function Sort() {
     { id: 4, label: 'Dispositivos', value: 'devices' },
     { id: 5, label: 'Alfabético', value: 'name' },
   ];
+
+  const defaultValue =
+    criteria || options.find((obj) => obj.value === 'rating');
 
   const styles = {
     control: (prov) => ({
@@ -67,10 +76,14 @@ export default function Sort() {
       <div className="buttons">
         <Select
           isSearchable={false}
-          defaultValue={options[5]}
+          defaultValue={defaultValue}
           options={options}
           styles={styles}
           theme={theme}
+          onChange={(res) => {
+            changeCriteria(res);
+            changeDecrease(false);
+          }}
         />
         <button type="button" onClick={toggleDecrease} title="Cambiar orden">
           {decrease ? '⬇' : '⬆'}

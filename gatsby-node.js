@@ -6,7 +6,10 @@ const { awsConfig } = require('./config');
 
 async function getVpns() {
   const response = await axios.get(process.env.ENDPOINT, awsConfig);
-  if (response.data.statusCode !== 200) return [];
+  if (response.data.statusCode !== 200) {
+    console.log('some error.....');
+    return [];
+  }
   return response.data.body;
 }
 
@@ -14,7 +17,6 @@ exports.createPages = async ({ actions: { createPage } }) => {
   // fetch data
   const allVpns = await getVpns();
   const count = allVpns.length;
-  // console.log(allVpns);
 
   // list all
   createPage({
