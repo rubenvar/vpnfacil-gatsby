@@ -91,7 +91,7 @@ export default function Hero() {
       <p>
         Hay muchas opciones, pero aquí lo tienes <strong>fácil</strong>
       </p>
-      <span className="down" onClick={() => scrollTo('#list')}>
+      <span className="down" onClick={() => scrollTo('#vpnBar')}>
         <IconChevronDown color="white" stroke={1} size={100} />
       </span>
     </StyledHero>

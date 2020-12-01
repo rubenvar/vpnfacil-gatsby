@@ -34,7 +34,7 @@ export default createGlobalStyle`
   --winner500: #ffcf00;
 
   --cardRadius: 15px;
-  --buttonRadius: 5px;
+  --buttonRadius: 10px;
 
   --boxShadow: 0 2px 3px rgba(0, 0, 0, 0.15);
 
