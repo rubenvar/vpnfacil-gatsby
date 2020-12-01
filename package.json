@@ -15,6 +15,7 @@
     "@tabler/icons": "^1.36.0",
     "axios": "^0.21.0",
     "dotenv": "^8.2.0",
+    "fontsource-audiowide": "^3.0.9",
     "fontsource-quicksand": "^3.0.3",
     "fontsource-ubuntu": "^3.0.9",
     "gatsby": "^2.26.1",
@@ -28,6 +29,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-select": "^3.1.1",
     "react-star-ratings": "^2.3.0",
     "styled-components": "^5.2.1"
   },
