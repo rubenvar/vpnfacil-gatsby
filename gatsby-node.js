@@ -4,19 +4,20 @@ require('dotenv').config({
 const axios = require('axios');
 const { awsConfig } = require('./config');
 
-exports.createPages = async ({ actions: { createPage } }) => {
-  async function getVpns() {
-    const response = await axios.get(process.env.ENDPOINT, awsConfig);
-    if (response.data.statusCode !== 200) return [];
-    return response.data.body;
-  }
+async function getVpns() {
+  const response = await axios.get(process.env.ENDPOINT, awsConfig);
+  if (response.data.statusCode !== 200) return [];
+  return response.data.body;
+}
 
+exports.createPages = async ({ actions: { createPage } }) => {
   // fetch data
   const allVpns = await getVpns();
+  // console.log(allVpns);
 
   // list all
   createPage({
-    path: `/all`,
+    path: `/`,
     component: require.resolve('./src/templates/all.js'),
     context: { allVpns },
   });
