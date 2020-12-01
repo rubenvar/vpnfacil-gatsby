@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 // try to get config from local
-const localTable = JSON.parse(localStorage.getItem('tableView'));
+const localTable = JSON.parse(
+  typeof window !== 'undefined' && window.localStorage.getItem('tableView')
+);
 
 const initialState = {
   // use local or false
@@ -18,7 +20,8 @@ function ViewProvider({ children }) {
 
   // update local onchange
   useEffect(() => {
-    localStorage.setItem('tableView', JSON.stringify(table));
+    if (typeof window !== 'undefined')
+      window.localStorage.setItem('tableView', JSON.stringify(table));
   }, [table]);
 
   return (
