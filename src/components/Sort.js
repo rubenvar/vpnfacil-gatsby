@@ -1,30 +1,35 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Select from 'react-select';
-import styled from 'styled-components';
+import { useLocation } from '@reach/router';
+import queryString from 'query-string';
 
 import { OrderContext } from '../context/OrderContext';
+import { StyledSort, styles, theme } from './styles/SortStyles';
 
-const StyledSort = styled.div`
-  p {
-    color: var(--grey500);
-    margin: 0 0 5px;
-  }
+const options = [
+  { label: 'Puntuación', value: 'rating' },
+  { label: 'Servidores', value: 'servers' },
+  { label: 'Países', value: 'countries' },
+  { label: 'Dispositivos', value: 'devices' },
+  { label: 'Alfabético', value: 'name' },
+];
 
-  .buttons {
-    display: flex;
-    button {
-      margin-left: 12px;
-      color: #444;
-      box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
-      border: 1px solid #ddd;
-      border-radius: var(--buttonRadius);
-      background-color: #fff;
-      cursor: pointer;
-      transition: all 0.3s;
-      padding: 0 10px;
-    }
+const defaultOptionValue = 'rating';
+
+// (https://dev.to/5t3ph/how-to-use-url-query-string-parameters-in-gatsby-a71)
+const getSorting = (query) => {
+  if (query) {
+    // parse the url query
+    const queriedConf = queryString.parse(query);
+    // get the key-value pair we need (sort)
+    const { sort } = queriedConf;
+    // return value if valid, or fallback
+    if (options.map((obj) => obj.value).includes(sort)) return sort;
+    return defaultOptionValue;
   }
-`;
+  // fallback if no valid query in url
+  return defaultOptionValue;
+};
 
 export default function Sort() {
   const {
@@ -35,40 +40,32 @@ export default function Sort() {
     changeCriteria,
   } = useContext(OrderContext);
 
-  const options = [
-    { id: 1, label: 'Puntuación', value: 'rating' },
-    { id: 2, label: 'Servidores', value: 'servers' },
-    { id: 3, label: 'Países', value: 'countries' },
-    { id: 4, label: 'Dispositivos', value: 'devices' },
-    { id: 5, label: 'Alfabético', value: 'name' },
-  ];
+  // Get url query for sorting:
+  const location = useLocation();
+  // send url query to parse, if not valid use ls criteria, if not, default
+  const sortingUrlQuery =
+    (location.search && getSorting(location.search)) ||
+    criteria ||
+    defaultOptionValue;
+  const [sorting, setSorting] = useState(
+    options.find((opt) => opt.value === sortingUrlQuery)
+  );
+
+  useEffect(() => {
+    changeCriteria(sorting);
+  }, [sorting]);
+
+  console.log(sorting);
 
   const defaultValue =
-    criteria || options.find((obj) => obj.value === 'rating');
+    sorting || options.find((obj) => obj.value === defaultOptionValue);
 
-  const styles = {
-    control: (prov) => ({
-      ...prov,
-      borderRadius: '10px',
-      borderColor: '#ddd',
-    }),
-    container: (prov) => ({ ...prov, width: '100%' }),
-    menu: (prov) => ({ ...prov, zIndex: '999' }),
-    singleValue: (prov) => ({ ...prov, color: '#444' }),
-    indicatorSeparator: () => ({ display: 'none' }),
-    dropdownIndicator: (prov) => ({ ...prov, color: 'hsl(160, 65%, 44%)' }),
+  const handleChange = (res) => {
+    // update 'sorting criteria' and 'decrease' in Context (which changes the LS too)
+    changeCriteria(res);
+    changeDecrease(false);
+    // update the url query
   };
-
-  const theme = (prov) => ({
-    ...prov,
-    colors: {
-      ...prov.colors,
-      primary: 'hsl(160, 65%, 44%)',
-      primary25: 'hsl(160, 59%, 79%)',
-      neutral20: 'hsl(160, 5%, 50%)',
-      neutral30: 'hsl(160, 5%, 30%)',
-    },
-  });
 
   return (
     <StyledSort>
@@ -80,10 +77,7 @@ export default function Sort() {
           options={options}
           styles={styles}
           theme={theme}
-          onChange={(res) => {
-            changeCriteria(res);
-            changeDecrease(false);
-          }}
+          onChange={handleChange}
         />
         <button type="button" onClick={toggleDecrease} title="Cambiar orden">
           {decrease ? '⬇' : '⬆'}
