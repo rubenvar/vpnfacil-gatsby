@@ -21,6 +21,7 @@ export default function Card({ vpn }) {
     servers,
     devices,
     id,
+    color,
     slug,
     name,
     moneyBack,
@@ -39,7 +40,7 @@ export default function Card({ vpn }) {
   if (appLanguage && appLanguage.includes('spanish')) spanish = true;
 
   return (
-    <StyledCard>
+    <StyledCard color={color}>
       <img src={`/logos/${id}.jpg`} alt={`logo de ${name}`} />
       <h2>
         <Link to={`/vpn/${slug}/`}>{name}</Link>

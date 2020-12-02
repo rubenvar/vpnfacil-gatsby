@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export default styled.article`
+  --vpnColor: ${(props) => props.color || 'var(--grey900)'};
   border: 2px solid var(--primary300);
   border-radius: var(--cardRadius);
   color: #444;
@@ -16,7 +17,7 @@ export default styled.article`
       filter: saturate(75%) blur(0px) opacity(90%);
     }
     h2 {
-      color: var(--vpn-color);
+      color: var(--vpnColor);
     }
     .go {
       background-color: var(--primary300);

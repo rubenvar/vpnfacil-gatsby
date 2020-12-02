@@ -1,19 +1,8 @@
 import React from 'react';
-import { Link } from 'gatsby';
-
 import PropTypes from 'prop-types';
-import {
-  IconCertificate,
-  IconLanguage,
-  IconDevices2,
-  IconFileShredder,
-  IconFileSearch,
-  IconCloudDownload,
-} from '@tabler/icons';
 import StarRating from 'react-star-ratings';
 
 import StyledRowLink from './styles/StyledRow';
-import CardNumbers from './CardNumbers';
 import { formatNumber } from '../utils';
 
 export default function Card({ vpn }) {
@@ -22,6 +11,7 @@ export default function Card({ vpn }) {
     servers,
     devices,
     id,
+    color,
     slug,
     name,
     moneyBack,
@@ -32,15 +22,12 @@ export default function Card({ vpn }) {
     p2p,
     rating,
   } = vpn;
-  const primary500 = 'hsl(270, 75%, 70%)';
-
-  const numbers = { countries, servers, devices };
 
   let spanish = false;
   if (appLanguage && appLanguage.includes('spanish')) spanish = true;
 
   return (
-    <StyledRowLink to={`/vpn/${slug}/`}>
+    <StyledRowLink to={`/vpn/${slug}/`} color={color}>
       <img src={`/logos/${id}.jpg`} alt={`logo de ${name}`} />
 
       <div className="title">
@@ -116,91 +103,6 @@ export default function Card({ vpn }) {
         {p2p === 'no' && <span className="info">❌ No</span>}
         {!p2p && <span className="info">-</span>}
       </div>
-
-      {/* <CardNumbers numbers={numbers} />
-      <ul>
-        {moneyBack && (
-          <li>
-            <IconCertificate color={primary500} />
-            {moneyBack === 'yes' && (
-              <span>
-                Garantía{' '}
-                <span className="tag">
-                  de devolución{moneyBackDays ? ` ${moneyBackDays} días` : ''}
-                </span>
-              </span>
-            )}
-            {moneyBack === 'no' && (
-              <span>
-                Sin garantía <span className="tag">de devolución</span>
-              </span>
-            )}
-          </li>
-        )}
-
-        {appLanguage !== '' && (
-          <li>
-            <IconLanguage color={primary500} />
-            {spanish ? (
-              <span>
-                <span className="tag">Disponible en </span>español
-              </span>
-            ) : (
-              <span>
-                <span className="tag">Solo en</span> inglés
-              </span>
-            )}
-          </li>
-        )}
-
-        {compatIndex && (
-          <li>
-            <IconDevices2 color={primary500} />
-            <span>
-              <span className="tag">Compatibilidad</span>{' '}
-              {compatIndex < 6
-                ? 'baja'
-                : compatIndex > 5 && compatIndex < 12
-                ? 'media'
-                : 'alta'}
-            </span>
-          </li>
-        )}
-
-        {noLogs && (
-          <li>
-            {noLogs === 'yes' && (
-              <>
-                <IconFileShredder color={primary500} />
-                <span>No guarda logs</span>
-              </>
-            )}
-            {noLogs === 'no' && (
-              <>
-                <IconFileSearch color={primary500} />
-                <span>Puede guardar logs</span>
-              </>
-            )}
-          </li>
-        )}
-
-        {p2p && (
-          <li>
-            {p2p === 'yes' && (
-              <>
-                <IconCloudDownload color={primary500} />
-                <span>Compatible con P2P</span>
-              </>
-            )}
-            {p2p === 'no' && (
-              <>
-                <IconCloudDownload color={primary500} />
-                <span>No compatible con P2P</span>
-              </>
-            )}
-          </li>
-        )}
-      </ul> */}
     </StyledRowLink>
   );
 }

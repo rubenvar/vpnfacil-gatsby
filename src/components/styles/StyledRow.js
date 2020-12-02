@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'gatsby';
 
 export default styled(Link)`
+  --vpnColor: ${(props) => props.color || 'var(--grey900)'};
   text-decoration: none;
   &:hover {
     transform: scale(1.02);
@@ -10,7 +11,7 @@ export default styled(Link)`
       filter: saturate(75%) blur(0px) opacity(95%);
     }
     h2 {
-      color: var(--vpn-color);
+      color: var(--vpnColor);
     }
   }
   &:nth-child(even) {
