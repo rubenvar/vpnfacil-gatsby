@@ -4,7 +4,7 @@
   "description": "A simplified bare-bones starter for Gatsby",
   "version": "0.1.0",
   "scripts": {
-    "dev": "gatsby develop",
+    "dev": "gatsby develop --verbose",
     "build": "gatsby build",
     "start": "npm run dev",
     "serve": "gatsby serve",
@@ -12,6 +12,8 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
+    "@mdx-js/mdx": "^1.6.22",
+    "@mdx-js/react": "^1.6.22",
     "@tabler/icons": "^1.36.0",
     "axios": "^0.21.0",
     "country-code-emoji": "^1.0.0",
@@ -22,8 +24,10 @@
     "fontsource-ubuntu": "^3.0.9",
     "gatsby": "^2.26.1",
     "gatsby-image": "^2.6.0",
+    "gatsby-plugin-mdx": "^1.6.0",
     "gatsby-plugin-sharp": "^2.9.1",
     "gatsby-plugin-smoothscroll": "^1.2.0",
+    "gatsby-plugin-styled-components": "^3.6.0",
     "gatsby-source-filesystem": "^2.6.1",
     "gatsby-transformer-sharp": "^2.7.0",
     "isomorphic-unfetch": "^3.1.0",
