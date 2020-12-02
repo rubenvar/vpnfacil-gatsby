@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Layout from '../components/Layout';
 import {
   Top,
   Nav,
@@ -17,15 +16,14 @@ import {
 import SingleSection from '../components/single/Section';
 
 export default function SingleVpn({ pageContext: { vpn, allVpns } }) {
-  // const { name } = vpn;
   const tests = false;
   const review = false;
-
   const technicalExists =
     vpn.protocolsList !== '' || vpn.socks5 !== '' || vpn.moreList !== '';
   const pricingExists = !!vpn.plan3Pricing;
+
   return (
-    <Layout>
+    <>
       <Top vpn={vpn} />
       <Nav
         name={vpn.name}
@@ -44,7 +42,7 @@ export default function SingleVpn({ pageContext: { vpn, allVpns } }) {
       <Details vpn={vpn} vpns={allVpns} />
       {technicalExists && <Technical vpn={vpn} vpns={allVpns} />}
       {pricingExists && <Pricing vpn={vpn} />}
-    </Layout>
+    </>
   );
 }
 
