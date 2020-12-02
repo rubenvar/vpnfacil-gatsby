@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import { IconGridDots, IconLayoutList } from '@tabler/icons';
 import React from 'react';
+import PropTypes from 'prop-types';
+import { IconLayoutGrid, IconLayoutList } from '@tabler/icons';
 import styled from 'styled-components';
 
 import { ViewContext } from '../context/ViewContext';
@@ -94,7 +94,7 @@ export default function Bar({ total }) {
                   onClick={toggleTable}
                   title="Cambiar a Bloques"
                 >
-                  <IconGridDots color={table ? '#444' : '#4447'} />
+                  <IconLayoutGrid color={table ? '#444' : '#4447'} />
                 </button>
               </div>
             </div>
