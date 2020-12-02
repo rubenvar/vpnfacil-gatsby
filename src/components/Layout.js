@@ -4,6 +4,7 @@ import 'normalize.css';
 
 import GlobalStyle from './styles/GlobalStyle';
 import Header from './Header';
+import Footer from './Footer';
 
 export default function Layout({ location, children }) {
   return (
@@ -11,6 +12,7 @@ export default function Layout({ location, children }) {
       <GlobalStyle />
       <Header isIndex={location?.pathname === '/'} />
       <main id="main">{children}</main>
+      <Footer />
     </>
   );
 }
