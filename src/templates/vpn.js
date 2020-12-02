@@ -2,9 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Layout from '../components/Layout';
-import { Top, Nav, Ratings, Numbers } from '../components/single';
+import {
+  Top,
+  Nav,
+  Ratings,
+  Numbers,
+  Languages,
+  Warranty,
+  Compatible,
+  Details,
+} from '../components/single';
 
-export default function SingleVpn({ pageContext: { vpn } }) {
+export default function SingleVpn({ pageContext: { vpn, allVpns } }) {
   // const { name } = vpn;
   const tests = false;
   const review = false;
@@ -24,7 +33,11 @@ export default function SingleVpn({ pageContext: { vpn } }) {
         pricingExists={pricingExists}
       />
       <Ratings vpn={vpn} />
-      <Numbers />
+      <Numbers vpn={vpn} vpns={allVpns} />
+      <Languages vpn={vpn} vpns={allVpns} />
+      <Warranty vpn={vpn} vpns={allVpns} />
+      <Compatible vpn={vpn} vpns={allVpns} />
+      <Details vpn={vpn} vpns={allVpns} />
     </Layout>
   );
 }

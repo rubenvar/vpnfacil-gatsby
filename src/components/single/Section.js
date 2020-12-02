@@ -22,6 +22,15 @@ const Section = styled.section`
   }
 `;
 
+export const StyledTitle = styled.h2`
+  font-family: var(--specialFont);
+  font-weight: 700;
+  font-size: 36px;
+  padding-bottom: 4px;
+  border-bottom: 3px solid var(--primary500);
+  margin-bottom: 36px;
+`;
+
 export default function SingleSection({ children, wide = false, id = '' }) {
   return (
     <Section id={id}>

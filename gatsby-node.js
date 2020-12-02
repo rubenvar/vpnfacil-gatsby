@@ -30,7 +30,7 @@ exports.createPages = async ({ actions: { createPage } }) => {
     createPage({
       path: `/vpn/${vpn.slug}/`,
       component: require.resolve('./src/templates/vpn.js'),
-      context: { vpn },
+      context: { allVpns, vpn },
     });
   });
 };

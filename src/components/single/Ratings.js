@@ -3,18 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import StarRating from 'react-star-ratings';
 
-import Section from './Section';
-
-const Styled = styled.div`
-  h2 {
-    font-family: var(--specialFont);
-    font-weight: 700;
-    font-size: 36px;
-    padding-bottom: 4px;
-    border-bottom: 3px solid var(--primary500);
-    margin-bottom: 36px;
-  }
-`;
+import Section, { StyledTitle } from './Section';
 
 const Row = styled.div`
   display: grid;
@@ -84,33 +73,31 @@ export function Ratings({ vpn }) {
 
   return (
     <Section id="ratings">
-      <Styled>
-        <h2>Puntuaciones</h2>
-        {ratings.map((rat, i) =>
-          rat.value > 0 ? (
-            <Row
-              key={rat.title}
-              className={rat.title === 'General' ? 'main' : null}
-            >
-              <div className="title">
-                <h3>{rat.title}</h3>
-                {rat.text && <span>{rat.text}</span>}
-              </div>
-              <div style={{ justifySelf: 'end' }}>
-                <StarRating
-                  rating={rat.value / 20}
-                  starRatedColor="#ffc107"
-                  starEmptyColor="#777"
-                  starDimension="28px"
-                  starSpacing="0px"
-                  name={vpn.id}
-                />
-                {rat.value / 20}
-              </div>
-            </Row>
-          ) : null
-        )}
-      </Styled>
+      <StyledTitle>Puntuaciones</StyledTitle>
+      {ratings.map((rat, i) =>
+        rat.value > 0 ? (
+          <Row
+            key={rat.title}
+            className={rat.title === 'General' ? 'main' : null}
+          >
+            <div className="title">
+              <h3>{rat.title}</h3>
+              {rat.text && <span>{rat.text}</span>}
+            </div>
+            <div style={{ justifySelf: 'end' }}>
+              <StarRating
+                rating={rat.value / 20}
+                starRatedColor="#ffc107"
+                starEmptyColor="#777"
+                starDimension="28px"
+                starSpacing="0px"
+                name={vpn.id}
+              />
+              {rat.value / 20}
+            </div>
+          </Row>
+        ) : null
+      )}
     </Section>
   );
 }
