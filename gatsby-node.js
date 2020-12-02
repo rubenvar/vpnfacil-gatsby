@@ -7,10 +7,10 @@ const { awsConfig } = require('./config');
 async function getVpns() {
   const response = await axios.get(process.env.ENDPOINT, awsConfig);
   if (response.data.statusCode !== 200) {
-    // eslint-disable-next-line no-console
+    /* eslint-disable no-console */
     console.error('some error.....');
     console.error(response);
-    console.error('some error.....');
+    /* eslint-enable no-console */
     return [];
   }
   return response.data.body;
