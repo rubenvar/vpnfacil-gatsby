@@ -112,7 +112,7 @@ export function Compatible({ vpn, vpns }) {
     <SingleSection id="compatible">
       <StyledTitle>Compatibilidad</StyledTitle>
       {compatible.map((cat) => (
-        <Row>
+        <Row key={cat.title}>
           <div className="title">
             <h3>{cat.title}</h3>
             {cat.text && <span>{cat.text}</span>}
@@ -169,7 +169,7 @@ Compatible.propTypes = {
   vpn: PropTypes.shape({
     browserPlugins: PropTypes.string,
     browsers: PropTypes.string,
-    compatIndex: PropTypes.number,
+    compatIndex: PropTypes.string,
     compatibilityList: PropTypes.string,
     name: PropTypes.any,
     nas: PropTypes.string,

@@ -6,3 +6,5 @@ export { Languages } from './Languages';
 export { Warranty } from './Warranty';
 export { Compatible } from './Compatible';
 export { Details } from './Details';
+export { Technical } from './Technical';
+export { Pricing } from './Pricing';

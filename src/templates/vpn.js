@@ -11,7 +11,10 @@ import {
   Warranty,
   Compatible,
   Details,
+  Technical,
+  Pricing,
 } from '../components/single';
+import SingleSection from '../components/single/Section';
 
 export default function SingleVpn({ pageContext: { vpn, allVpns } }) {
   // const { name } = vpn;
@@ -37,7 +40,10 @@ export default function SingleVpn({ pageContext: { vpn, allVpns } }) {
       <Languages vpn={vpn} vpns={allVpns} />
       <Warranty vpn={vpn} vpns={allVpns} />
       <Compatible vpn={vpn} vpns={allVpns} />
+      {tests && <SingleSection>Tests...</SingleSection>}
       <Details vpn={vpn} vpns={allVpns} />
+      {technicalExists && <Technical vpn={vpn} vpns={allVpns} />}
+      {pricingExists && <Pricing vpn={vpn} />}
     </Layout>
   );
 }

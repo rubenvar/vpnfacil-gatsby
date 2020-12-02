@@ -158,7 +158,7 @@ export function Details({ vpn, vpns }) {
       {details.map(
         (detail) =>
           detail.value !== undefined && (
-            <Row>
+            <Row key={detail.title}>
               <div className="title">
                 <h3>{detail.title}</h3>
                 {detail.text && <span>{detail.text}</span>}

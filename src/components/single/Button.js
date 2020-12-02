@@ -24,7 +24,11 @@ const StyledButton = styled.button`
   }
 `;
 
-export default function Button({ link, main, text }) {
+export default function Button({
+  link = '/',
+  main = false,
+  text = 'Ver Oferta',
+}) {
   return (
     <a href={link}>
       <StyledButton type="button" className={main ? 'main' : 'light'}>
