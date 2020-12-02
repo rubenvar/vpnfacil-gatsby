@@ -44,7 +44,7 @@ const StyledTop = styled.div`
       color: var(--grey700);
       span {
         margin: 0 10px 10px 0;
-        padding: 2px 5px 5px;
+        padding: 3px 6px 4px;
         background: var(--grey200);
         border-radius: 3px;
         display: inline-block;
@@ -127,6 +127,14 @@ export function Top({ vpn }) {
               ) : (
                 <span>sin garantía</span>
               )}
+              {vpn.freeTrial && (
+                <span>
+                  prueba gratis{' '}
+                  {vpn.freeTrialDays === 'unlimited'
+                    ? 'ilimitada'
+                    : `${vpn.freeTrialDays} días`}
+                </span>
+              )}
               {vpn.appLanguage.includes('spanish') ? (
                 <span>en 🇪🇸 español</span>
               ) : (
@@ -172,15 +180,17 @@ Top.propTypes = {
     appLanguage: PropTypes.string,
     basedIn: PropTypes.string,
     color: PropTypes.string,
-    compatIndex: PropTypes.string,
+    compatIndex: PropTypes.number,
     countries: PropTypes.number,
     description: PropTypes.string,
-    devices: PropTypes.number,
-    id: PropTypes.string,
+    devices: PropTypes.string,
+    freeTrial: PropTypes.string,
+    freeTrialDays: PropTypes.string,
+    id: PropTypes.string.isRequired,
     link: PropTypes.string,
     moneyBack: PropTypes.string,
     moneyBackDays: PropTypes.number,
-    name: PropTypes.string,
+    name: PropTypes.string.isRequired,
     plan3Currency: PropTypes.string,
     plan3Pricing: PropTypes.number,
     rating: PropTypes.number,
