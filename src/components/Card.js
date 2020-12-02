@@ -139,7 +139,7 @@ export default function Card({ vpn }) {
           >
             <StarRating
               rating={rating / 20}
-              starRatedColor="#ffcf00"
+              starRatedColor="#ffc107"
               starEmptyColor="#777"
               starDimension="20px"
               starSpacing="0px"

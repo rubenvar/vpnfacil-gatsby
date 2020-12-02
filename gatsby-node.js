@@ -7,7 +7,8 @@ const { awsConfig } = require('./config');
 async function getVpns() {
   const response = await axios.get(process.env.ENDPOINT, awsConfig);
   if (response.data.statusCode !== 200) {
-    console.log('some error.....');
+    // eslint-disable-next-line no-console
+    console.error('some error.....');
     return [];
   }
   return response.data.body;
@@ -53,8 +54,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   if (errors) {
     reporter.panicOnBuild(`Error while running GraphQL query.`);
   }
-
-  console.log(data);
 
   // create the posts
   data.allPosts.nodes.forEach((post) => {

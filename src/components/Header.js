@@ -107,7 +107,13 @@ export default function Header({ isIndex }) {
         <Nav>
           <ul>
             <li>
-              <Link to="/guias">Guias</Link>
+              <Link to="/guias/ofertas-vpn-2020/">Mejores Ofertas 2020</Link>
+            </li>
+            <li>
+              <Link to="/guias/">Guias</Link>
+            </li>
+            <li>
+              <Link to="/guias/preguntas-frecuentes/">FAQ</Link>
             </li>
           </ul>
         </Nav>

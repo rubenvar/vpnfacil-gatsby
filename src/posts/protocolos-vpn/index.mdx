@@ -1,0 +1,221 @@
+---
+title: "Protocolos VPN: Qué son y Cómo Elegir"
+seoTitle: "Protocolos VPN: Qué son y Cómo Elegir [Tabla Comparativa]"
+date: 2020-10-30
+excerpt: "Otra de esas cosas que no quieres hacer, pero tienes que saber cómo elegir el mejor protocolo VPN para tu conexión. Mira aquí cómo escoger, explicado con palabras normales"
+slug: protocolos-vpn
+---
+
+import StyledTableContainer from "../../components/md/TableContainer";
+
+Si usas un VPN (o estás pensando en empezar a usarlo), habrás visto esta palabra en más de un sitio.
+
+Y todas las siglas que la acompañan: PPTP, L2TP, IPSec, SSTP, etc.
+
+Ya sé que parece **un lío**, pero quédate un segundo. Vamos a ver lo que te interesa:
+
+- Qué protocolo tienes que elegir para que tu VPN funcione **más rápido y más seguro**.
+
+Si quieres más detalles, los tienes. Si te gustan los temas técnicos.
+
+Pero sino, no te preocupes: te he dejado una **tabla comparativa** muy fácil de entender (y con emojis).
+
+Vamos:
+
+## Qué es un Protocolo VPN
+
+Los _protocolos VPN_ son las **instrucciones** y **procesos** que usan tu app (cliente VPN) y el servidor VPN al que te conectas para comunicarse. Y para crear una conexión estable y segura entre ambos, por donde _viajarán_ tus datos.
+
+Así que puedes imaginarte que estos protocolos son _importantes_. Son los responsables de la **velocidad** y la **seguridad** de tu conexión.
+
+---
+
+Los protocolos VPN configuran el _túnel_ por el que pasan tus datos ([mira aquí cómo funciona un VPN](/guias/que-es-vpn/)). Algunos protocolos te darán más velocidad. Otros más seguridad. La idea es encontrar el equilibrio perfecto.
+
+![balance GIF (giphy.com)](https://media.giphy.com/media/26tniIl2HHKZCMLgA/giphy.gif)
+
+Hay unos cuantos tipos disponibles. Si usas [un buen servicio VPN](/guias/como-elegir-mejor-vpn/) tendrás varios para elegir cuando te conectes a un servidor.
+
+Si vas a usar tu VPN en un smartphone, te interesarán determinados protocolos. También hay protocolos para instalar un VPN en tu router directamente. Otros son **súper-seguros**. Depende de lo que busques.
+
+Vamos a ver _claramente_ cuál elegir para cada situación:
+
+## Qué protocolo VPN deberías usar en cada situación
+
+Digamos que hay dos grandes grupos de protocolos:
+
+- Unos son buenos para conseguir **seguridad**.
+- Los otros, para tener más **velocidad**.
+
+¿Quieres saber la _pega_?
+
+No hay ninguno que pueda darte lo mejor de ambos lados:
+
+> Cuanto más seguro sea un protocolo, más lento será.
+
+Para entender la razón, imagina que un protocolo VPN fuera un _pasillo_:
+
+![corridor GIF (giphy.com)](https://media.giphy.com/media/3oEduYs8QskwIQUgEg/giphy.gif)
+
+Cuantas más _puertas_ le añadimos para pasarlo, **más seguro** es. Tus datos, que viajan por el pasillo, están más encriptados cuantas más puertas haya, pero también **tardarán más** tiempo en llegar al otro lado.
+
+_Cada puerta es una capa de seguridad._
+
+Si el pasillo tiene menos puertas, los datos pasarán mucho **más rápido**. Pero estarán menos encriptados y cualquiera podrá tener acceso a ellos, por lo que el pasillo será mucho **menos seguro**.
+
+<div class="box">
+
+Es una analogía bastante simplificada, pero esa es la idea general:
+
+- Los protocolos VPN más rápidos tienen problemas de seguridad.
+- Los más seguros, ralentizan tu conexión.
+
+</div>
+
+Ya está bastante más claro, ¿no?
+
+Vamos a ponerle nombre a cada protocolo con esta tabla comparativa. Y seguido te explico cuál usar en cada caso:
+
+### 📊 Tabla Comparativa de Protocolos VPN
+
+<StyledTableContainer>
+
+| Protocolo   | Velocidad | Seguridad | Estable  | Streaming | P2P      | Compatible |
+| ----------- | --------- | --------- | -------- | --------- | -------- | ---------- |
+| PPTP        | ✅ Rápido | ❌ Mala   | ⚠️ Media | ✅ Bien   | ✅ Bien  | ✅ Alta    |
+| IPSec       | ⚠️ Medio  | ✅ Buena  | ✅ Buena | ✅ Bien   | ✅ Bien  | ✅ Alta    |
+| L2TP/IPSec  | ⚠️ Medio  | ⚠️ Media  | ✅ Buena | ✅ Bien   | ✅ Bien  | ✅ Alta    |
+| IKEv2/IPSec | ✅ Rápido | ✅ Buena  | ✅ Buena | ✅ Bien   | ✅ Bien  | ⚠️ Media   |
+| OpenVPN TCP | ⚠️ Medio  | ✅ Buena  | ✅ Buena | ⚠️ Medio  | ✅ Bien  | ✅ Alta    |
+| OpenVPN UDP | ✅ Rápido | ✅ Buena  | ⚠️ Media | ✅ Bien   | ✅ Bien  | ✅ Alta    |
+| SSTP        | ⚠️ Medio  | ✅ Buena  | ⚠️ Media | ⚠️ Medio  | ✅ Bien  | ⚠️ Media   |
+| WireGuard   | ✅ Rápido | ✅ Buena  | ❌ Mala  | ⚠️ Medio  | ⚠️ Medio | ⚠️ Media   |
+
+</StyledTableContainer>
+
+### 🏎 ¿Cuál es el protocolo más rápido?
+
+El protocolo VPN **más rápido** es PPTP.
+
+Después estarían L2TP y IKEv2, también bastante rápidos.
+
+![faster GIF (giphy.com)](https://media.giphy.com/media/NhkMeVafqPkPK/giphy.gif)
+
+OpenVPN y SSTP son algo más lentos que otros protocolos.
+
+Así que si vas a usar tu VPN para streaming y no te importa la seguridad, el protocolo más rápido que tendrías que elegir es PPTP.
+
+**Protocolo VPN más rápido**: PPTP.
+
+### 🛡 ¿Cuál es el protocolo más seguro?
+
+Ahora vamos al contrario que el apartado anterior:
+
+PPTP estaría _el último_ en cuanto a seguridad. Utiliza [encriptación 128-bit](https://es.wikipedia.org/wiki/Advanced_Encryption_Standard).
+
+IKEv2 y L2TP encriptan tus datos 2 veces, así que son más seguros.
+
+El **más seguro** es OpenVPN. Tiene el nivel más alto de encriptación, y utiliza certificados digitales para la autenticación.
+
+SSTP también te garantiza una seguridad alta, pero solo puede usarse en entornos Windows.
+
+**Protocolo VPN más seguro**: OpenVPN.
+
+### 📂 ¿Cuál uso para P2P (compartir archivos)?
+
+Como es lógico, si vas a usar un VPN para [descargar archivos por P2P](https://comousarutorrent.com) (como desde µtorrent, etc.), querrás elegir un protocolo que te garantice **velocidad y anonimato**...
+
+... y acabamos de ver que estos dos conceptos no son los más compatibles del mundo 😅
+
+Al fin y al cabo, una encriptación más alta necesita más tiempo y recursos para procesar tus datos, así que bajará el rendimiento.
+
+Primero, sea como sea, **evita PPTP**.
+
+![security GIF (giphy.com)](https://media.giphy.com/media/IeKgCDlpTqRQbZEhBF/giphy.gif)
+
+Después, te podrían interesar L2TP y IKEv2, que usan encriptación 256-bit a través de IPSec.
+
+- Pero L2TP te bajará la velocidad máxima...
+- Y IKEv2 solo funcionará en plataformas más recientes.
+
+Así que nos queda OpenVPN: es uno de los más seguros (AES-256 bits también), y tiene _suficiente_ velocidad.
+
+**Mejor protocolo para P2P**: OpenVPN (y IKEv2 si usas un dispositivo reciente).
+
+## Todos los protocolos, detallados
+
+[Los mejores servicios VPN](/guias/mejor-vpn-comparativa/) te ofrecen casi todas las opciones que hemos visto hasta ahora. Y en muchas ocasiones, eligen por ti el mejor protocolo según el uso que vayas a hacer. Sin que tú tengas que hacer nada.
+
+Aun así, hay ocasiones o servicios en los que tendrás que elegir por ti mismo, así que mejor tener ciertas nociones (al fin y al cabo, se trata de tu información personal).
+
+### PPTP (Point-to-Point Tunneling Protocol)
+
+Es uno de los protocolos VPN más viejos.
+
+Ya hemos visto que te ofrece la máxima velocidad: útil para streaming, descargas online, o navegar por Internet.
+
+Aunque si puedes, **evítalo**. Tienes mejores opciones 👇
+
+### L2TP (Layer 2 Tunneling Protocol)
+
+Como L2TP por sí mismo no ofrece gran encriptación, se combina con IPSec. Así que lo verás normalmente como **L2TP/IPSec**.
+
+Es más seguro que otros, pero puede tener conflictos con algunos _firewalls_.
+
+Aun así, es una buena alternativa a OpenVPN porque puedes usarlo en todas las plataformas modernas, y puede evitar limitaciones que una red tenga contra el uso de VPN.
+
+### SSTP (Secure Socket Tunneling Protocol)
+
+Propiedad de Microsoft. Así que solo está disponible para Windows, [FreeBSD](https://www.freebsd.org/es/) y Linux.
+
+De todas formas, es uno de los protocolos VPN **más seguros**, similar a OpenVPN.
+
+Puede saltar la mayoría de _firewalls_, pero quizás tengas problemas con la **velocidad**.
+
+### OpenVPN
+
+El protocolo más _popular_. El mejor equilibrio entre velocidad y máxima seguridad posible.
+
+Además, es de código abierto (_open source_). Es compatible con casi todas las plataformas, configurable, y funciona en cualquier puerto.
+
+Y puede saltarse la mayoría de restricciones de redes y firewalls.
+
+_Un sueño hecho realidad_, o casi.
+
+### IKEv2 (Internet Key Exchange)
+
+Basado en IPSec (normalmente lo verás ofrecido como IKEv2/IPSec), este es uno de los protocolos más recientes.
+
+Desarrollado por Cisco y Microsoft, es rápido, bastante **estable y seguro**, y muy fácil de configurar.
+
+¿La pega? Como es _bastante nuevo_, puedes tener problemas de **compatibilidad** con plataformas más antiguas.
+
+### IPSec (Internet Protocol Security)
+
+Es un _conjunto_ de protocolos, usado entre otras cosas para asegurar VPNs. Lo verás asociado con IKEv2 y L2TP para proveer mayor seguridad en forma de encriptación y autenticación.
+
+Pero podría usarse como protocolo VPN por sí solo.
+
+### SSL/TLS (Secure Socket Layer/Transport Layer Security)
+
+Quizás estas siglas te suenen de verlas por Internet.
+
+SSL y su sucesor TLS son los [protocolos criptográficos](https://es.wikipedia.org/wiki/Protocolo_criptogr%C3%A1fico) más usados hoy en día.
+
+Son los usados para _aseguar cualquier conexión HTTPS_ en una página web.
+
+Algunos protocolos VPN los usan, como OpenVPN, pero SSL y TLS **no son protocolos VPN** por sí mismos.
+
+### WireGuard
+
+El protocolo VPN **más nuevo**.
+
+Creado para sustituir a IPSec, se dice que es más rápido y estable. Además, es de _código abierto_ también, lo que garantiza menos problemas de seguridad.
+
+Utiliza métodos criptográficos modernos para mejorar el rendimiento del VPN, y ya dicen que se están consiguiendo las máximas velocidades, tanto con WiFi, 4G/5G, etc.
+
+Aun así, es todavía bastante nuevo y tiene problemas de **estabilidad** y de compatibilidad con diferentes plataformas.
+
+---
+
+Via | [PureVPN](https://www.purevpn.com/what-is-vpn/protocols), [SaferVPN](https://www.safervpn.com/vpn-protocols)
