@@ -1,20 +1,24 @@
-import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 // try to get config from local
-const localDecrease = JSON.parse(
-  typeof window !== 'undefined' && window.localStorage.getItem('decrease')
-);
-const localCriteria = JSON.parse(
-  typeof window !== 'undefined' && window.localStorage.getItem('criteria')
-);
+// localCriteria and localDir will be false (if no window) or empty (falsey) or the criteria
+const localDir =
+  typeof window !== 'undefined' &&
+  JSON.parse(window.localStorage.getItem('dir'));
+const localCriteria =
+  typeof window !== 'undefined' &&
+  JSON.parse(window.localStorage.getItem('criteria'));
+
+// set defaults
+const defaultDir = 'down';
+const defaultCriteria = { label: 'Puntuación', value: 'rating' };
 
 const initialState = {
-  // use local or false
-  decrease: localDecrease || false,
-  toggleDecrease: () => {},
-  changeDecrease: () => {},
-  criteria: localCriteria || null,
+  // use local or defaults
+  dir: localDir || defaultDir,
+  changeDir: () => {},
+  criteria: localCriteria || defaultCriteria,
   changeCriteria: () => {},
 };
 
@@ -23,13 +27,13 @@ const OrderContext = React.createContext(initialState);
 
 function OrderProvider({ children }) {
   // init state with local
-  const [decrease, setDecrease] = useState(initialState.decrease);
+  const [dir, setDir] = useState(initialState.dir);
   const [criteria, setCriteria] = useState(initialState.criteria);
 
   // update local onchange
   useEffect(() => {
-    localStorage.setItem('decrease', JSON.stringify(decrease));
-  }, [decrease]);
+    localStorage.setItem('dir', JSON.stringify(dir));
+  }, [dir]);
   useEffect(() => {
     localStorage.setItem('criteria', JSON.stringify(criteria));
   }, [criteria]);
@@ -37,9 +41,13 @@ function OrderProvider({ children }) {
   return (
     <OrderContext.Provider
       value={{
-        decrease,
-        toggleDecrease: () => setDecrease(!decrease), // use this one just to toggle
-        changeDecrease: (d) => setDecrease(d), // and this one to set specific true or false
+        dir,
+        changeDir: (d) => {
+          // if value passed, use that one
+          if (d) return setDir(d);
+          // else, set to the opposite
+          return dir === 'down' ? setDir('up') : setDir('down');
+        },
         criteria,
         changeCriteria: (cr) => setCriteria(cr),
       }}

@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/display-name */
 const React = require('react');
 
 require('fontsource-ubuntu/latin.css');
@@ -15,5 +17,6 @@ exports.wrapRootElement = ({ element }) => (
 );
 
 exports.wrapPageElement = ({ element, props }) => (
+  // eslint-disable-next-line react/jsx-props-no-spreading
   <Layout {...props}>{element}</Layout>
 );

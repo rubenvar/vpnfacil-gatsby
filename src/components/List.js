@@ -32,27 +32,26 @@ const StyledList = styled.section`
 
 export default function List({ vpns }) {
   const { table } = useContext(ViewContext);
-  const { decrease, criteria } = useContext(OrderContext);
+  const { dir, criteria } = useContext(OrderContext);
 
-  // sort all vpns in place on criteria context change
   if (criteria) {
+    // use stored dir string as bool
+    const isDown = dir === 'down';
+    // sort all vpns in place on criteria context change
     vpns.sort((a, b) => {
       let first = a[criteria.value];
       let sec = b[criteria.value];
-
       if (criteria.value === 'name') {
         first = b.name.toLowerCase();
         sec = a.name.toLowerCase();
       }
-
       if (criteria.value === 'devices') {
         // convert 'unlimited' string to big number
         if (first === 'unlimited') first = 999;
         if (sec === 'unlimited') sec = 999;
       }
-
-      if (first < sec) return decrease ? -1 : 1;
-      if (first > sec) return decrease ? 1 : -1;
+      if (first < sec) return isDown ? 1 : -1;
+      if (first > sec) return isDown ? -1 : 1;
       return 0;
     });
   }
