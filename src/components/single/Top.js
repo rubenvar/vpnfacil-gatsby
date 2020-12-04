@@ -110,13 +110,14 @@ export function Top({ vpn }) {
           <p id="description">{vpn.description}</p>
           <div className="details">
             <p>
-              {vpn.devices && (
+              {vpn.devices ? (
                 <span>
-                  {vpn.devices === 'unlimited' ? '∞' : vpn.devices} dispositivos
+                  {vpn.devices === 'unlimited' ? '∞' : vpn.devices} dispositivo
+                  {vpn.devices !== 1 && 's'}
                 </span>
-              )}
+              ) : null}
 
-              {vpn.countries && <span>{vpn.countries} países</span>}
+              {vpn.countries ? <span>{vpn.countries} países</span> : null}
               {vpn.basedIn && (
                 <span>
                   {flag(vpn.basedIn)} {getCountry(vpn.basedIn)}
