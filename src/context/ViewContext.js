@@ -24,7 +24,6 @@ function ViewProvider({ children }) {
   useEffect(() => {
     if (typeof window !== 'undefined')
       window.localStorage.setItem('tableView', JSON.stringify(table));
-    console.log({ table });
   }, [table]);
 
   return (

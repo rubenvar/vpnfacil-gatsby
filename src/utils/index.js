@@ -4,4 +4,3 @@ export { formatPercent } from './formatPercent';
 export { insertString } from './insertString';
 export { isNumber } from './isNumber';
 export { makeUniqueId } from './makeUniqueId';
-export { useWindowSize } from './useWindowSize';

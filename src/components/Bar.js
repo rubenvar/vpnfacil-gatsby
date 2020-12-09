@@ -1,20 +1,19 @@
 import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { IconLayoutGrid, IconLayoutList } from '@tabler/icons';
+import { useWindowWidth } from '@react-hook/window-size';
 
 import { ViewContext } from '../context/ViewContext';
 import Sort from './Sort';
 import StyledBar from './styles/BarStyles';
-import { useWindowSize } from '../utils';
 
 export default function Bar({ total }) {
   const { table, toggleTable, forceBlockView } = useContext(ViewContext);
-  const { width } = useWindowSize();
-  console.log(width);
+  const width = useWindowWidth();
 
   useEffect(() => {
     if (width < 767) forceBlockView();
-  }, [width, forceBlockView]);
+  });
 
   return (
     <StyledBar id="vpnBar">
