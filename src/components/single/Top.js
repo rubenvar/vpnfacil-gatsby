@@ -176,7 +176,7 @@ Top.propTypes = {
     appLanguage: PropTypes.string,
     basedIn: PropTypes.string,
     color: PropTypes.string,
-    compatIndex: PropTypes.number,
+    compatIndex: PropTypes.string,
     countries: PropTypes.number,
     description: PropTypes.string,
     devices: PropTypes.string,

@@ -96,7 +96,7 @@ export function Technical({ vpn, vpns }) {
           </div>
           <div className="list">
             {vpn.protocolsList.split(',').map((prot) => (
-              <span>{prot.replace(/\s/g, '')}</span>
+              <span key={prot}>{prot.replace(/\s/g, '')}</span>
             ))}
           </div>
         </Row>

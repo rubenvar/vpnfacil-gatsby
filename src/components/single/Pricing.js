@@ -89,6 +89,7 @@ export function Pricing({ vpn }) {
           (plan, i) =>
             plan.price !== 0 && (
               <div
+                key={i}
                 className={i === plans.length - 1 ? 'column main' : 'column'}
               >
                 <h3>

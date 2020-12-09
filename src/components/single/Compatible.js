@@ -119,7 +119,7 @@ export function Compatible({ vpn, vpns }) {
           </div>
           <div className="list">
             {cat.values.map((logo) => (
-              <div className="platform">
+              <div key={logo} className="platform">
                 <img
                   src={`/compatible/${logo.toLowerCase()}.png`}
                   alt={`Logo de ${logo}`}
