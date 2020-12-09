@@ -1,14 +1,15 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/display-name */
 const React = require('react');
-const { ViewProvider } = require('./src/context/ViewContext');
-const { OrderProvider } = require('./src/context/OrderContext');
+const { ViewProvider, OrderProvider, MenuProvider } = require('./src/context');
 const Layout = require('./src/components/Layout').default;
 
 exports.wrapRootElement = ({ element }) => (
-  <OrderProvider>
-    <ViewProvider>{element}</ViewProvider>
-  </OrderProvider>
+  <MenuProvider>
+    <OrderProvider>
+      <ViewProvider>{element}</ViewProvider>
+    </OrderProvider>
+  </MenuProvider>
 );
 
 exports.wrapPageElement = ({ element, props }) => (
