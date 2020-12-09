@@ -123,8 +123,8 @@ export function Technical({ vpn, vpns }) {
             <span>funciones incluidas cuando te registras en {vpn.name}</span>
           </div>
           <div className="list">
-            {vpn.moreList.split(',').map((more) => (
-              <span>{more.replace(/$\s/g, '')}</span>
+            {vpn.moreList.split(',').map((more, i) => (
+              <span key={i}>{more.replace(/$\s/g, '')}</span>
             ))}
           </div>
         </Row>

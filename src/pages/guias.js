@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql, Link } from 'gatsby';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const StyledListed = styled.article`
   margin-bottom: 40px;
@@ -83,10 +84,22 @@ export default function Blog({ data }) {
 
   const { totalCount, nodes: posts } = data.allPosts;
   return (
-    <PostList>
-      <h1>Todas las Guías ({totalCount}) sobre VPN:</h1>
-      {posts && posts.map((post) => <ListedPost key={post.id} post={post} />)}
-    </PostList>
+    <>
+      <Helmet>
+        <title>
+          Guías Actualizadas sobre VPN y Seguridad Online ~ VPN Fácil
+        </title>
+        <meta
+          name="description"
+          content="Mira el Blog de VPN Fácil: Guías actualizadas sobre VPNs, proxys, cómo elegir e instalar el mejor VPN para ti..."
+        />
+        <link rel="canonical" href="https://vpnfacil.com/guias/" />
+      </Helmet>
+      <PostList>
+        <h1>Todas las Guías ({totalCount}) sobre VPN:</h1>
+        {posts && posts.map((post) => <ListedPost key={post.id} post={post} />)}
+      </PostList>
+    </>
   );
 }
 

@@ -2,10 +2,12 @@
 
 module.exports = {
   siteMetadata: {
-    title: `VPNFácil`,
+    title: `VPNFácil – Elige el Mejor VPN en Español Aquí, muy Fácil`,
     author: `@rubenvara01`,
-    description: `Elige tu VPN aquí`,
+    description:
+      'Necesitas un VPN para ser líbre y anónimo en Internet: tienes decenas para elegir, pero aquí te lo ponemos fácil',
     siteUrl: `https://vpnfacil.com`,
+    color: `#b379ec`,
   },
   plugins: [
     {
@@ -56,7 +58,31 @@ module.exports = {
     },
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-styled-components`,
-    // `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sitemap`, // the best sitemap solution in the world!!!
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: 'VPN Fácil',
+        short_name: 'VPN Fácil',
+        start_url: '/',
+        background_color: '#ffffff',
+        theme_color: '#b379ec',
+        display: 'minimal-ui',
+        icon: `/imgs/logo-512.png`,
+        icons: [
+          {
+            src: '/imgs/logo-192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: '/imgs/logo-512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+        ],
+      },
+    },
   ],
 };

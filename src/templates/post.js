@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const StyledPost = styled.div`
   max-width: 100%;
@@ -43,17 +44,25 @@ const StyledPost = styled.div`
 
 export default function PostTemplate({ data }) {
   const { frontmatter, body } = data.post;
-
+  const { seoTitle, title, excerpt, slug, date } = frontmatter;
   return (
-    <StyledPost>
-      <header>
-        <h1>{frontmatter.title}</h1>
-        <p>Actualizado: {frontmatter.date}</p>
-      </header>
-      <article className="blog-post">
-        <MDXRenderer>{body}</MDXRenderer>
-      </article>
-    </StyledPost>
+    <>
+      <Helmet>
+        <title>{seoTitle || `${title} ~ VPNFácil`}</title>
+        <meta name="description" content={excerpt} />
+        <link rel="canonical" href={`https://vpnfacil.com/guias/${slug}/`} />
+        <meta property="og:title" content={seoTitle || title} />
+      </Helmet>
+      <StyledPost>
+        <header>
+          <h1>{title}</h1>
+          <p>Actualizado: {date}</p>
+        </header>
+        <article className="blog-post">
+          <MDXRenderer>{body}</MDXRenderer>
+        </article>
+      </StyledPost>
+    </>
   );
 }
 

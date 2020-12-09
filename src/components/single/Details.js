@@ -177,8 +177,8 @@ export function Details({ vpn, vpns }) {
             <span>se aceptan (al menos) estas opciones</span>
           </div>
           <div className="list">
-            {vpn.cryptocurrenciesList.split(',').map((crypto) => (
-              <span>{crypto.replace(/\s/g, '')}</span>
+            {vpn.cryptocurrenciesList.split(',').map((crypto, i) => (
+              <span key={i}>{crypto.replace(/\s/g, '')}</span>
             ))}
           </div>
         </Row>

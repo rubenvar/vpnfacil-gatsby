@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
 
 import {
   Top,
@@ -22,8 +23,17 @@ export default function SingleVpn({ pageContext: { vpn, allVpns } }) {
     vpn.protocolsList !== '' || vpn.socks5 !== '' || vpn.moreList !== '';
   const pricingExists = !!vpn.plan3Pricing;
 
+  const title = `${
+    vpn.name
+  }: Revisión y Detalles para Elegir en ${new Date().getFullYear()} ~ VPNFácil`;
   return (
     <>
+      <Helmet>
+        <title>{title}</title>
+        <meta name="description" content={vpn.description} />
+        <link rel="canonical" href={`https://vpnfacil.com/vpn/${vpn.slug}/`} />
+        <meta property="og:title" content={title} />
+      </Helmet>
       <Top vpn={vpn} />
       <Nav
         name={vpn.name}
