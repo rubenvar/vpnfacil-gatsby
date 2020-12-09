@@ -60,6 +60,7 @@ export default function VpnData() {
   useEffect(() => {
     const getVpns = () => {
       axios.get(process.env.ENDPOINT, awsConfig).then((res) => {
+        if (!res.data.body) return setVpns([]);
         const allVpns = [...res.data.body];
         const bestVpns = allVpns
           .sort((a, b) => {
@@ -69,7 +70,7 @@ export default function VpnData() {
           })
           .filter((vpn, i) => i < 10);
 
-        setVpns(bestVpns);
+        return setVpns(bestVpns);
       });
     };
     getVpns();
