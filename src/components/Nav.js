@@ -10,7 +10,7 @@ import { StyledNav } from './styles/HeaderStyles';
 export default function Nav() {
   const { isMenuOpen, toggleMenu, closeMenu } = useContext(MenuContext);
   const width = useWindowWidth();
-  const [isMobile, setIsMobile] = useState(width < 767);
+  const [isMobile, setIsMobile] = useState(width ? width < 767 : false);
 
   // close menu on any route change 🎊 (https://stackoverflow.com/questions/61274365/allow-component-to-detect-route-change-in-gatsby)
   useEffect(() =>
