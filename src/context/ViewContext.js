@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 
 // try to get config from local
@@ -9,6 +10,7 @@ const initialState = {
   // use local or false
   table: localTable || false,
   toggleTable: () => {},
+  forceBlockView: () => {},
 };
 
 // init Context
@@ -22,6 +24,7 @@ function ViewProvider({ children }) {
   useEffect(() => {
     if (typeof window !== 'undefined')
       window.localStorage.setItem('tableView', JSON.stringify(table));
+    console.log({ table });
   }, [table]);
 
   return (
@@ -29,11 +32,16 @@ function ViewProvider({ children }) {
       value={{
         table,
         toggleTable: () => setTable(!table),
+        forceBlockView: () => setTable(false),
       }}
     >
       {children}
     </ViewContext.Provider>
   );
 }
+
+ViewProvider.propTypes = {
+  children: PropTypes.object,
+};
 
 export { ViewContext, ViewProvider };

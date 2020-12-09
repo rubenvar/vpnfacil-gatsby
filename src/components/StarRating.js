@@ -73,8 +73,8 @@ export default function StarRating({ rating, config = {}, style = {} }) {
 
   return (
     <div style={{ display: 'flex', marginBottom: 14, ...style }}>
-      {stars.map((star) => (
-        <Star id={id} full={star} config={config} />
+      {stars.map((star, i) => (
+        <Star key={i} id={id} full={star} config={config} />
       ))}
       {config.showText && (
         <span
