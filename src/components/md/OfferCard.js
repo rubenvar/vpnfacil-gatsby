@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import StarRating from 'react-star-ratings';
 import styled from 'styled-components';
 
+import StarRating from '../StarRating';
 import { formatMoney } from '../../utils';
 
 const StyledOfferCard = styled.article`
@@ -107,7 +107,7 @@ export default function OfferCard({ vpn, subtitle, comment }) {
         <div className="text">
           <ul>
             <li>
-              <span className="tag">Descuento:</span>
+              <span className="tag">Descuento: </span>
               {Math.round(100 - (vpn.plan3Pricing * 100) / vpn.plan1Pricing)}%
             </li>
             <li>
@@ -134,12 +134,14 @@ export default function OfferCard({ vpn, subtitle, comment }) {
           </a>
           <StarRating
             rating={vpn.rating / 20}
-            starRatedColor="#ffc107"
-            starEmptyColor="#777"
-            starDimension="30px"
-            starSpacing="0px"
-            name={vpn.id}
+            config={{
+              fullColor: '#ffc107',
+              emptyColor: '#7f7f7f',
+              size: 30,
+              showText: true,
+            }}
           />
+
           <a href={vpn.link} target="_blank" rel="noreferrer nofollow">
             <button type="button">
               Ver oferta <strong>actualizada</strong>

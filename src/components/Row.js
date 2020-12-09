@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import StarRating from 'react-star-ratings';
 
+import StarRating from './StarRating';
 import StyledRowLink from './styles/StyledRow';
 import { formatNumber } from '../utils';
 
@@ -35,16 +35,9 @@ export default function Card({ vpn }) {
         {rating && (
           <StarRating
             rating={rating / 20}
-            starRatedColor="#ffd65a"
-            starEmptyColor="#a9a9a9"
-            starDimension="15px"
-            starSpacing="0px"
-            name={id}
+            config={{ fullColor: '#ffd65a', emptyColor: '#a9a9a9', size: 15 }}
+            style={{ justifyContent: 'center', margin: '7px 0' }}
           />
-          // <StarRating
-          //   rating={rating / 20}
-          //   config={{ fullColor: '#ffd65a', emptyColor: '#a9a9a9', size: 15 }}
-          //   style="justify-content: center;margin: 7px 0;" />
         )}
       </div>
 

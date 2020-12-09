@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import StarRating from 'react-star-ratings';
 
+import StarRating from '../StarRating';
 import Section, { StyledTitle } from './Section';
 
 const Row = styled.div`
@@ -84,17 +84,16 @@ export function Ratings({ vpn }) {
               <h3>{rat.title}</h3>
               {rat.text && <span>{rat.text}</span>}
             </div>
-            <div style={{ justifySelf: 'end' }}>
-              <StarRating
-                rating={rat.value / 20}
-                starRatedColor="#ffc107"
-                starEmptyColor="#777"
-                starDimension="28px"
-                starSpacing="0px"
-                name={vpn.id}
-              />
-              {rat.value / 20}
-            </div>
+            <StarRating
+              rating={rat.value / 20}
+              config={{
+                fullColor: '#ffc107',
+                emptyColor: '#7f7f7f',
+                size: 28,
+                showText: true,
+              }}
+              style={{ justifySelf: 'end', margin: 0 }}
+            />
           </Row>
         ) : null
       )}

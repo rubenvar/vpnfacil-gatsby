@@ -10,8 +10,8 @@ import {
   IconFileSearch,
   IconCloudDownload,
 } from '@tabler/icons';
-import StarRating from 'react-star-ratings';
 
+import StarRating from './StarRating';
 import StyledCard from './styles/StyledCard';
 import CardNumbers from './CardNumbers';
 
@@ -130,25 +130,15 @@ export default function Card({ vpn }) {
         )}
 
         {rating && (
-          <li
-            style={{
-              justifyContent: `center`,
-              color: `#777`,
-              margin: `20px 0 0`,
+          <StarRating
+            rating={rating / 20}
+            config={{
+              fullColor: '#ffc107',
+              emptyColor: '#777',
+              showText: true,
             }}
-          >
-            <StarRating
-              rating={rating / 20}
-              starRatedColor="#ffc107"
-              starEmptyColor="#777"
-              starDimension="20px"
-              starSpacing="0px"
-              name={id}
-              // config={{ fullColor: '#ffc107', showText: true }}
-              // style="justify-content: center;margin: 20px 0 0;" />
-            />
-            {rating / 20}
-          </li>
+            style={{ justifyContent: 'center', margin: '20px 0 0' }}
+          />
         )}
       </ul>
 

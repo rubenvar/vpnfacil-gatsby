@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import StarRating from 'react-star-ratings';
 import flag from 'country-code-emoji';
 import { getCountry } from 'country-list-spanish';
 
+import StarRating from '../StarRating';
 import Section from './Section';
 import Button from './Button';
 // import { takeNewScreenshot } from '../../utils';
@@ -99,14 +99,9 @@ export function Top({ vpn }) {
           </h1>
           <StarRating
             rating={vpn.rating / 20}
-            starRatedColor="#ffc107"
-            starEmptyColor="#777"
-            starDimension="28px"
-            starSpacing="0px"
-            name={vpn.id}
+            config={{ fullColor: '#ffc107', emptyColor: '#7f7f7f', size: 28 }}
             style={{ marginBottom: 30 }}
           />
-
           <p id="description">{vpn.description}</p>
           <div className="details">
             <p>
@@ -128,7 +123,7 @@ export function Top({ vpn }) {
               ) : (
                 <span>sin garantía</span>
               )}
-              {vpn.freeTrial && (
+              {vpn.freeTrial === 'yes' && (
                 <span>
                   prueba gratis{' '}
                   {vpn.freeTrialDays === 'unlimited'
