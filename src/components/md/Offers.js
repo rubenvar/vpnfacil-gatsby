@@ -47,8 +47,9 @@ export default function Offers() {
 
   return (
     <>
-      {vpns.map((vpn) => (
+      {vpns.map((vpn, i) => (
         <OfferCard
+          key={i}
           vpn={vpn}
           subtitle={texts[vpn.id].subtitle}
           comment={texts[vpn.id].comment}
