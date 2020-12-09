@@ -31,7 +31,7 @@ export default function SEO() {
 
       <meta property="og:title" content={title} />
       <meta property="og:type" content="website" />
-      <meta property="og:image" content={`${siteUrl}/imgs/vpn-facil.png`} />
+      <meta property="og:image" content={`${siteUrl}/vpnfacil.png`} />
       <meta property="og:url" content={`${siteUrl}/`} />
       <meta property="og:locale" content="es_ES" />
       <meta property="og:description" content={description} />
@@ -40,7 +40,7 @@ export default function SEO() {
       <meta name="twitter:creator" content={author} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:title" content={title} />
-      <meta name="twitter:image" content={`${siteUrl}/vpn-facil.png`} />
+      <meta name="twitter:image" content={`${siteUrl}/vpnfacil.png`} />
       <meta name="twitter:image:alt" content="VPN Fácil" />
     </Helmet>
   );
