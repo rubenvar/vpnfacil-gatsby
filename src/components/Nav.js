@@ -1,12 +1,13 @@
+// ideas https://medium.com/swlh/create-a-menu-for-your-gatsby-website-without-libs-b7eb3a563fd2
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'gatsby';
 import { useWindowWidth } from '@react-hook/window-size';
 import { globalHistory } from '@reach/router';
 
 import { MenuContext } from '../context/MenuContext';
-import { Nav } from './styles/MenuStyles';
+import { StyledNav } from './styles/HeaderStyles';
 
-export default function Menu() {
+export default function Nav() {
   const { isMenuOpen, toggleMenu, closeMenu } = useContext(MenuContext);
   const width = useWindowWidth();
   const [isMobile, setIsMobile] = useState(width < 767);
@@ -22,12 +23,11 @@ export default function Menu() {
     if (width < 767) setIsMobile(true);
     if (width >= 767) setIsMobile(false);
   }, [width]);
-  console.log({ isMobile, isMenuOpen });
 
   return (
-    <Nav isMobile={isMobile} isOpen={isMenuOpen}>
+    <StyledNav isMobile={isMobile} isOpen={isMenuOpen}>
       <button type="button" onClick={toggleMenu}>
-        Open Menu
+        <div />
       </button>
       <ul>
         <li>
@@ -40,6 +40,6 @@ export default function Menu() {
           <Link to="/guias/preguntas-frecuentes/">FAQ</Link>
         </li>
       </ul>
-    </Nav>
+    </StyledNav>
   );
 }

@@ -1,38 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
-import styled from 'styled-components';
 
-import Menu from './Menu';
-
-const StyledHeader = styled.header`
-  position: relative;
-  z-index: 99;
-  .inner {
-    max-width: var(--maxWidth);
-    margin: 0 auto;
-    padding: 0 var(--defSidePadding);
-    height: var(--headerHeight);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    h1,
-    h2 {
-      font-size: 26px;
-      margin: 0;
-      font-family: 'Audiowide', cursive;
-      a {
-        text-decoration: none;
-        opacity: 0.5;
-        transition: all 0.3s;
-        color: var(--secondary300);
-        &:hover {
-          opacity: 0.95;
-        }
-      }
-    }
-  }
-`;
+import Nav from './Nav';
+import { StyledHeader } from './styles/HeaderStyles';
 
 export default function Header({ isIndex }) {
   return (
@@ -47,7 +18,7 @@ export default function Header({ isIndex }) {
             <Link to="/">VPN Fácil</Link>
           </h2>
         )}
-        <Menu />
+        <Nav />
       </div>
     </StyledHeader>
   );
