@@ -1,5 +1,3 @@
 # VPNFácil
 
-🚧 Work In Progress 🚧
-
-Here is the code for the VPN Fácil site. Built with [Gatsby](https://gatsbyjs.com/).
+Code for the [VPNFácil](https://vpnfacil.com) site. Built with [Gatsby](https://gatsbyjs.com/) and hosted on [Netlify](https://www.netlify.com/).
