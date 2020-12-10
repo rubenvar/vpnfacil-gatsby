@@ -9,7 +9,7 @@ async function getVpns() {
   if (response.data.statusCode !== 200) {
     /* eslint-disable no-console */
     console.error('some error.....');
-    console.error(response);
+    console.error(response.data);
     /* eslint-enable no-console */
     return [];
   }
