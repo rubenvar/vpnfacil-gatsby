@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import StarRating from '@rubenvara/react-star-rating';
 
-import StarRating from './StarRating';
 import StyledRowLink from './styles/StyledRow';
 import { formatNumber } from '../utils';
 

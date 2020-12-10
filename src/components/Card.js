@@ -11,7 +11,7 @@ import {
   IconCloudDownload,
 } from '@tabler/icons';
 
-import StarRating from './StarRating';
+import StarRating from '@rubenvara/react-star-rating';
 import StyledCard from './styles/StyledCard';
 import CardNumbers from './CardNumbers';
 

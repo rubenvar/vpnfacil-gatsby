@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
-import StarRating from '../StarRating';
+import StarRating from '@rubenvara/react-star-rating';
 import Section, { StyledTitle } from './Section';
 
 const Row = styled.div`

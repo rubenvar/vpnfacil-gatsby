@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import flag from 'country-code-emoji';
 import { getCountry } from 'country-list-spanish';
 
-import StarRating from '../StarRating';
+import StarRating from '@rubenvara/react-star-rating';
 import Section from './Section';
 import Button from './Button';
 // import { takeNewScreenshot } from '../../utils';
