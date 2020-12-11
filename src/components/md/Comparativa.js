@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import styled from 'styled-components';
-
 import { graphql, useStaticQuery } from 'gatsby';
-import { awsConfig } from '../../../config';
+
 import TableContainer from './TableContainer';
 
 const ComparativaContainer = styled(TableContainer)`
