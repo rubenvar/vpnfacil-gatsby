@@ -13,7 +13,7 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: 'gatsby-source-google-spreadsheets',
+      resolve: `gatsby-source-google-spreadsheets`,
       options: {
         spreadsheetId: process.env.SPREADSHEET_ID,
         credentials: {

@@ -1,14 +1,20 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 
+// remove local storage for now:
+// we can't persist table view settings,
+// but at least it doesn't screw the view on refresh, etc.
+
 // try to get config from local
-const localTable = JSON.parse(
-  typeof window !== 'undefined' && window.localStorage.getItem('tableView')
-);
+// const localTable =
+//   typeof window !== 'undefined'
+//     ? JSON.parse(window.localStorage.getItem('tableView'))
+//     : true;
 
 const initialState = {
   // use local or false
-  table: localTable || false,
+  table: true,
+  // table: localTable || false,
   toggleTable: () => {},
   forceBlockView: () => {},
 };
@@ -21,10 +27,10 @@ function ViewProvider({ children }) {
   const [table, setTable] = useState(initialState.table);
 
   // update local onchange
-  useEffect(() => {
-    if (typeof window !== 'undefined')
-      window.localStorage.setItem('tableView', JSON.stringify(table));
-  }, [table]);
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined')
+  //     window.localStorage.setItem('tableView', JSON.stringify(table));
+  // }, [table]);
 
   return (
     <ViewContext.Provider

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import { ViewContext } from '../context/ViewContext';
 import TableHeader from './TableHeader';
@@ -13,21 +13,22 @@ const StyledList = styled.section`
   margin: 0 auto;
   padding: 0 var(--defSidePadding);
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: ${({ tableView }) => (tableView ? `12px` : `34px`)};
-  ${({ tableView }) =>
-    !tableView &&
-    css`
-      @media only screen and (min-width: 660px) {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      @media only screen and (min-width: 1024px) {
-        grid-template-columns: repeat(3, 1fr);
-      }
-      @media only screen and (min-width: 1280px) {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    `};
+  &.table {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  &.blocks {
+    @media only screen and (min-width: 660px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media only screen and (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media only screen and (min-width: 1280px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    gap: 34px;
+  }
 `;
 
 export default function List({ vpns }) {
@@ -57,7 +58,7 @@ export default function List({ vpns }) {
   }
 
   return (
-    <StyledList tableView={table}>
+    <StyledList className={table ? 'table' : 'blocks'}>
       {table ? (
         <>
           <TableHeader />
