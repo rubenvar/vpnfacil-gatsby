@@ -1,4 +1,5 @@
 import React from 'react';
+import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 
@@ -16,16 +17,20 @@ import {
 } from '../components/single';
 import SingleSection from '../components/single/Section';
 
-export default function SingleVpn({ pageContext: { vpn, allVpns } }) {
-  const tests = false;
-  const review = false;
+export default function SingleVpn({ data }) {
+  const { vpn } = data;
+  const allVpns = data.allGoogleListSheet.nodes;
+
+  const testExists = false;
+  const reviewExists = false;
   const technicalExists =
-    vpn.protocolsList !== '' || vpn.socks5 !== '' || vpn.moreList !== '';
+    !!vpn.protocolsList || !!vpn.hasSocks5 || !!vpn.moreServices;
   const pricingExists = !!vpn.plan3Pricing;
 
   const title = `${
     vpn.name
   }: Revisión y Detalles para Elegir en ${new Date().getFullYear()} ~ VPNFácil`;
+
   return (
     <>
       <Helmet>
@@ -37,9 +42,9 @@ export default function SingleVpn({ pageContext: { vpn, allVpns } }) {
       <Top vpn={vpn} />
       <Nav
         name={vpn.name}
-        id={vpn.id}
-        tests={tests}
-        review={review}
+        code={vpn.code}
+        testExists={testExists}
+        reviewExists={reviewExists}
         technicalExists={technicalExists}
         pricingExists={pricingExists}
       />
@@ -48,14 +53,122 @@ export default function SingleVpn({ pageContext: { vpn, allVpns } }) {
       <Languages vpn={vpn} vpns={allVpns} />
       <Warranty vpn={vpn} vpns={allVpns} />
       <Compatible vpn={vpn} vpns={allVpns} />
-      {tests && <SingleSection>Tests...</SingleSection>}
+      {testExists && <SingleSection>Tests...</SingleSection>}
       <Details vpn={vpn} vpns={allVpns} />
-      {technicalExists && <Technical vpn={vpn} vpns={allVpns} />}
+      {technicalExists && (
+        <Technical
+          name={vpn.name}
+          hasSocks5={vpn.hasSocks5}
+          moreServices={vpn.moreServices}
+          protocolsList={vpn.protocolsList}
+          vpns={allVpns}
+        />
+      )}
       {pricingExists && <Pricing vpn={vpn} />}
     </>
   );
 }
 
+export const query = graphql`
+  query($slug: String!) {
+    vpn: googleListSheet(slug: { eq: $slug }) {
+      id
+      name
+      code
+      slug
+      description
+      color
+      link
+      baseLink
+      screenshot
+      privacyRating
+      priceRating
+      speedRating
+      supportRating
+      featuresRating
+      useRating
+      rating
+      locations
+      servers
+      hasServersPlus
+      ips
+      hasIpsPlus
+      countries
+      hasCountriesPlus
+      devices
+      hasMoneyBack
+      moneyBackDays
+      hasFreeTrial
+      freeTrialDays
+      uiLanguage
+      appLanguage
+      supportLanguage
+      platforms
+      hasBrowserPlugins
+      browserList
+      hasRouters
+      hasNas
+      hasSocks5
+      compatList
+      compatIndex
+      servicesList
+      updated
+      hasP2P
+      hasBusiness
+      hasStudents
+      hasNoLogs
+      hasAnonPay
+      hasCryptoPay
+      cryptoList
+      protocolsList
+      basedIn
+      plan1Length
+      plan1Pricing
+      plan2Length
+      plan2Pricing
+      plan3Length
+      plan3Pricing
+      planCurrency
+    }
+    allGoogleListSheet {
+      nodes {
+        code
+        servers
+        ips
+        countries
+        locations
+        devices
+        uiLanguage
+        appLanguage
+        supportLanguage
+        hasMoneyBack
+        hasFreeTrial
+        compatIndex
+        hasP2P
+        hasBusiness
+        hasStudents
+        hasNoLogs
+        hasAnonPay
+        hasCryptoPay
+        hasSocks5
+      }
+    }
+  }
+`;
+
 SingleVpn.propTypes = {
-  pageContext: PropTypes.object,
+  data: PropTypes.shape({
+    vpn: PropTypes.shape({
+      code: PropTypes.string.isRequired,
+      description: PropTypes.string,
+      moreServices: PropTypes.string,
+      name: PropTypes.string.isRequired,
+      plan3Pricing: PropTypes.string,
+      protocolsList: PropTypes.string,
+      slug: PropTypes.string.isRequired,
+      hasSocks5: PropTypes.string,
+    }).isRequired,
+    allGoogleListSheet: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
+      .isRequired,
+  }),
 };

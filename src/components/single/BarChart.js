@@ -4,7 +4,7 @@ import { Chart } from 'react-google-charts';
 
 export default function BarChart({ title, data, single, color }) {
   // find the index of the single vpn in the whole vpns data array
-  const ind = data.findIndex((obj) => obj.id === single);
+  const ind = data.findIndex((obj) => obj.code === single);
   // mutate the data array
   data[ind].color = color;
 

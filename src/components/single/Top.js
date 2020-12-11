@@ -71,7 +71,7 @@ const StyledTop = styled.div`
 export function Top({ vpn }) {
   const transf = 'c_scale,q_auto:eco,w_560';
   let screenshot;
-  if (vpn.screenshot === '') {
+  if (!vpn.screenshot) {
     // use placeholder just in case
     screenshot =
       'https://res.cloudinary.com/rub54381/image/upload/v1604082868/vpnf/screenshots/placeholder.png';
@@ -118,12 +118,12 @@ export function Top({ vpn }) {
                   {flag(vpn.basedIn)} {getCountry(vpn.basedIn)}
                 </span>
               )}
-              {vpn.moneyBack === 'yes' ? (
+              {vpn.hasMoneyBack === 'yes' ? (
                 <span>garantía {vpn.moneyBackDays} días</span>
               ) : (
                 <span>sin garantía</span>
               )}
-              {vpn.freeTrial === 'yes' && (
+              {vpn.hasFreeTrial === 'yes' && (
                 <span>
                   prueba gratis{' '}
                   {vpn.freeTrialDays === 'unlimited'
@@ -138,7 +138,7 @@ export function Top({ vpn }) {
               )}
               {vpn.plan3Pricing && (
                 <span>
-                  desde {formatMoney(vpn.plan3Pricing, vpn.plan3Currency)}/mes
+                  desde {formatMoney(vpn.plan3Pricing, vpn.planCurrency)}/mes
                 </span>
               )}
 
@@ -175,21 +175,22 @@ Top.propTypes = {
   vpn: PropTypes.shape({
     appLanguage: PropTypes.string,
     basedIn: PropTypes.string,
-    color: PropTypes.string,
-    compatIndex: PropTypes.string,
+    color: PropTypes.string.isRequired,
+    compatIndex: PropTypes.string.isRequired,
     countries: PropTypes.number,
     description: PropTypes.string,
     devices: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    freeTrial: PropTypes.string,
+    hasFreeTrial: PropTypes.string,
     freeTrialDays: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     id: PropTypes.string.isRequired,
-    link: PropTypes.string,
-    moneyBack: PropTypes.string,
-    moneyBackDays: PropTypes.number,
+    code: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
+    hasMoneyBack: PropTypes.string,
+    moneyBackDays: PropTypes.string,
     name: PropTypes.string.isRequired,
-    plan3Currency: PropTypes.string,
-    plan3Pricing: PropTypes.number,
-    rating: PropTypes.number,
+    planCurrency: PropTypes.string,
+    plan3Pricing: PropTypes.string,
+    rating: PropTypes.number.isRequired,
     screenshot: PropTypes.string,
   }),
 };

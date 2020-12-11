@@ -74,7 +74,7 @@ export function Ratings({ vpn }) {
   return (
     <Section id="ratings">
       <StyledTitle>Puntuaciones</StyledTitle>
-      {ratings.map((rat, i) =>
+      {ratings.map((rat) =>
         rat.value > 0 ? (
           <Row
             key={rat.title}
@@ -103,13 +103,12 @@ export function Ratings({ vpn }) {
 
 Ratings.propTypes = {
   vpn: PropTypes.shape({
-    featuresRating: PropTypes.number,
-    id: PropTypes.string,
-    priceRating: PropTypes.number,
-    privacyRating: PropTypes.number,
+    featuresRating: PropTypes.string,
+    priceRating: PropTypes.string,
+    privacyRating: PropTypes.string,
     rating: PropTypes.number,
-    speedRating: PropTypes.number,
-    supportRating: PropTypes.number,
-    useRating: PropTypes.number,
+    speedRating: PropTypes.string,
+    supportRating: PropTypes.string,
+    useRating: PropTypes.string,
   }),
 };

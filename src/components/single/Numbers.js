@@ -62,23 +62,23 @@ const Row = styled.div`
 export function Numbers({ vpn, vpns }) {
   const serversData = vpns
     .filter((vpn) => vpn.servers > 0)
-    .map((vpn) => ({ name: vpn.name, id: vpn.id, value: vpn.servers }))
+    .map((vpn) => ({ name: vpn.name, code: vpn.code, value: vpn.servers }))
     .sort((a, b) => (a.value < b.value ? 1 : -1));
   const ipsData = vpns
     .filter((vpn) => vpn.ips > 0)
-    .map((vpn) => ({ name: vpn.name, id: vpn.id, value: vpn.ips }))
+    .map((vpn) => ({ name: vpn.name, code: vpn.code, value: vpn.ips }))
     .sort((a, b) => (a.value < b.value ? 1 : -1));
   const countriesData = vpns
     .filter((vpn) => vpn.countries > 0)
-    .map((vpn) => ({ name: vpn.name, id: vpn.id, value: vpn.countries }))
+    .map((vpn) => ({ name: vpn.name, code: vpn.code, value: vpn.countries }))
     .sort((a, b) => (a.value < b.value ? 1 : -1));
   const locationsData = vpns
     .filter((vpn) => vpn.locations > 0)
-    .map((vpn) => ({ name: vpn.name, id: vpn.id, value: vpn.locations }))
+    .map((vpn) => ({ name: vpn.name, code: vpn.code, value: vpn.locations }))
     .sort((a, b) => (a.value < b.value ? 1 : -1));
   const devicesData = vpns
     .filter((vpn) => vpn.devices > 0)
-    .map((vpn) => ({ name: vpn.name, id: vpn.id, value: vpn.devices }))
+    .map((vpn) => ({ name: vpn.name, code: vpn.code, value: vpn.devices }))
     .sort((a, b) => (a.value < b.value ? 1 : -1));
 
   const numbers = [
@@ -87,21 +87,21 @@ export function Numbers({ vpn, vpns }) {
       text: 'más servidores VPN = más opciones tienes para conectarte',
       value: vpn.servers,
       data: serversData,
-      plus: vpn.serversPlus && vpn.serversPlus === 'yes',
+      plus: vpn.hasServersPlus && vpn.hasServersPlus === 'yes',
     },
     {
       title: 'IPs',
       text: 'más IPs = más posibles IPs podrán asignarte',
       value: vpn.ips,
       data: ipsData,
-      plus: vpn.ipsPlus && vpn.ipsPlus === 'yes',
+      plus: vpn.hasIpsPlus && vpn.hasIpsPlus === 'yes',
     },
     {
       title: 'Países',
       text: 'más países = más ubicaciones desde las que hacer tu conexión',
       value: vpn.countries,
       data: countriesData,
-      plus: vpn.countriesPlus && vpn.countriesPlus === 'yes',
+      plus: vpn.hasCountriesPlus && vpn.hasCountriesPlus === 'yes',
     },
     {
       title: 'Ubicaciones',
@@ -143,7 +143,7 @@ export function Numbers({ vpn, vpns }) {
                   <BarChart
                     title={number.title}
                     data={number.data}
-                    single={vpn.id}
+                    single={vpn.code}
                     color={vpn.color}
                   />
                 )}
@@ -159,15 +159,16 @@ Numbers.propTypes = {
   vpn: PropTypes.shape({
     color: PropTypes.string,
     countries: PropTypes.number,
-    countriesPlus: PropTypes.string,
-    devices: PropTypes.number,
-    id: PropTypes.string,
+    hasCountriesPlus: PropTypes.string,
+    // devices: PropTypes.number,
+    devices: PropTypes.string,
+    code: PropTypes.string.isRequired,
     ips: PropTypes.number,
-    ipsPlus: PropTypes.string,
+    hasIpsPlus: PropTypes.string,
     locations: PropTypes.number,
-    name: PropTypes.string,
+    name: PropTypes.string.isRequired,
     servers: PropTypes.number,
-    serversPlus: PropTypes.string,
+    hasServersPlus: PropTypes.string,
   }),
   vpns: PropTypes.array,
 };

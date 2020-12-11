@@ -10,16 +10,16 @@ export default function Card({ vpn }) {
     countries,
     servers,
     devices,
-    id,
+    code,
     color,
     slug,
     name,
-    moneyBack,
+    hasMoneyBack,
     moneyBackDays,
     appLanguage,
     compatIndex,
-    noLogs,
-    p2p,
+    hasNoLogs,
+    hasP2P,
     rating,
   } = vpn;
 
@@ -28,7 +28,7 @@ export default function Card({ vpn }) {
 
   return (
     <StyledRowLink to={`/vpn/${slug}/`} color={color}>
-      <img src={`/logos/${id}.jpg`} alt={`logo de ${name}`} />
+      <img src={`/logos/${code}.jpg`} alt={`logo de ${name}`} />
 
       <div className="title">
         <h2>{name}</h2>
@@ -62,15 +62,15 @@ export default function Card({ vpn }) {
           <span className="info">-</span>
         )}
 
-        {moneyBack === 'yes' && (
+        {hasMoneyBack === 'yes' && (
           <span className="info">
             ✅ {moneyBackDays} <span className="tag">días</span>
           </span>
         )}
-        {moneyBack === 'no' && <span className="info">❌ No</span>}
-        {!moneyBack && <span className="info">-</span>}
+        {hasMoneyBack === 'no' && <span className="info">❌ No</span>}
+        {!hasMoneyBack && <span className="info">-</span>}
 
-        {appLanguage !== '' ? (
+        {appLanguage ? (
           <span className="info">{spanish ? 'español' : 'inglés'}</span>
         ) : (
           <span className="info">-</span>
@@ -88,18 +88,33 @@ export default function Card({ vpn }) {
           <span className="info">-</span>
         )}
 
-        {noLogs === 'yes' && <span className="info">✅ No</span>}
-        {noLogs === 'no' && <span className="info">❌ Quizás</span>}
-        {!noLogs && <span className="info">-</span>}
+        {hasNoLogs === 'yes' && <span className="info">✅ No</span>}
+        {hasNoLogs === 'no' && <span className="info">❌ Quizás</span>}
+        {!hasNoLogs && <span className="info">-</span>}
 
-        {p2p === 'yes' && <span className="info">✅ Sí</span>}
-        {p2p === 'no' && <span className="info">❌ No</span>}
-        {!p2p && <span className="info">-</span>}
+        {hasP2P === 'yes' && <span className="info">✅ Sí</span>}
+        {hasP2P === 'no' && <span className="info">❌ No</span>}
+        {!hasP2P && <span className="info">-</span>}
       </div>
     </StyledRowLink>
   );
 }
 
 Card.propTypes = {
-  vpn: PropTypes.object,
+  vpn: PropTypes.shape({
+    appLanguage: PropTypes.string,
+    code: PropTypes.string.isRequired,
+    color: PropTypes.string,
+    compatIndex: PropTypes.string,
+    countries: PropTypes.number,
+    devices: PropTypes.string,
+    hasMoneyBack: PropTypes.string,
+    hasNoLogs: PropTypes.string,
+    hasP2P: PropTypes.string,
+    moneyBackDays: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    rating: PropTypes.number,
+    servers: PropTypes.number,
+    slug: PropTypes.string.isRequired,
+  }),
 };

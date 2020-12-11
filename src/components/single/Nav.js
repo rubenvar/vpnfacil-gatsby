@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import scrollTo from 'gatsby-plugin-smoothscroll';
 import React from 'react';
 import styled from 'styled-components';
@@ -69,17 +70,17 @@ const Bar = styled.section`
 export function Nav({
   technicalExists = false,
   pricingExists = false,
-  tests = false,
-  review = false,
+  testExists = false,
+  reviewExists = false,
   name,
-  id,
+  code,
 }) {
   return (
     <Bar>
       <div>
         <nav>
           <span id="vpn-logo">
-            <img src={`/logos/${id}.jpg`} alt={`Logo de ${name}`} />
+            <img src={`/logos/${code}.jpg`} alt={`Logo de ${name}`} />
             <h3>{name}</h3>
           </span>
           <span onClick={() => scrollTo('#ratings')}>Puntuaciones</span>
@@ -87,7 +88,7 @@ export function Nav({
           <span onClick={() => scrollTo('#languages')}>Idiomas</span>
           <span onClick={() => scrollTo('#warranty')}>Garantía</span>
           <span onClick={() => scrollTo('#compatible')}>Compatibilidad</span>
-          {tests && <span onClick={() => scrollTo('#test')}>Pruebas</span>}
+          {testExists && <span onClick={() => scrollTo('#test')}>Pruebas</span>}
           <span onClick={() => scrollTo('#details')}>Detalles</span>
           {technicalExists && (
             <span onClick={() => scrollTo('#technical')}>Técnico</span>
@@ -95,9 +96,20 @@ export function Nav({
           {pricingExists && (
             <span onClick={() => scrollTo('#pricing')}>Precios</span>
           )}
-          {review && <span onClick={() => scrollTo('#review')}>Review</span>}
+          {reviewExists && (
+            <span onClick={() => scrollTo('#review')}>Review</span>
+          )}
         </nav>
       </div>
     </Bar>
   );
 }
+
+Nav.propTypes = {
+  code: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  pricingExists: PropTypes.bool.isRequired,
+  reviewExists: PropTypes.bool.isRequired,
+  technicalExists: PropTypes.bool.isRequired,
+  testExists: PropTypes.bool.isRequired,
+};

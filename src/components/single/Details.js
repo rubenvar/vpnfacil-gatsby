@@ -2,8 +2,8 @@ import PropTypes, { string } from 'prop-types';
 import React from 'react';
 import flag from 'country-code-emoji';
 import { getCountry } from 'country-list-spanish';
-
 import styled from 'styled-components';
+
 import Section, { StyledTitle } from './Section';
 
 const Row = styled.div`
@@ -87,103 +87,93 @@ const Row = styled.div`
   }
 `;
 
-const manageBool = (opt) => {
-  if (opt === 'yes') return true;
-  if (opt === 'no') return false;
-  if (opt === '') return undefined;
-};
-
 export function Details({ vpn, vpns }) {
   const details = [
     {
       title: 'P2P',
       text:
         '¿se permiten descargas usando tecnología peer2peer (como µTorrent)?',
-      value: manageBool(vpn.p2p),
+      value: vpn.hasP2P,
       seeMore: `mira ${
-        vpns.filter((elem) => elem.p2p === 'yes').length
+        vpns.filter((elem) => elem.hasP2P === 'yes').length
       } VPNs que sí soportan P2P`,
     },
     {
       title: 'Plan Business',
       text: '¿tiene un plan especial con ventajas para empresas?',
-      value: manageBool(vpn.business),
+      value: vpn.hasBusiness,
       seeMore: `mira ${
-        vpns.filter((elem) => elem.business === 'yes').length
+        vpns.filter((elem) => elem.hasBusiness === 'yes').length
       } VPNs que sí tienen plan business`,
     },
     {
       title: 'Plan Estudiantes',
       text: '¿tiene este VPN un plan con descuentos para estudiantes?',
-      value: manageBool(vpn.students),
+      value: vpn.hasStudents,
       seeMore: `mira ${
-        vpns.filter((elem) => elem.students === 'yes').length
+        vpns.filter((elem) => elem.hasStudents === 'yes').length
       } VPNs que sí tienen plan para estudiantes`,
     },
     {
       title: 'No-Logs',
       text: `¿tiene ${vpn.name} explícitamente una política de no-logs?`,
-      value: manageBool(vpn.noLogs),
+      value: vpn.hasNoLogs,
       seeMore: `mira ${
-        vpns.filter((elem) => elem.noLogs === 'yes').length
+        vpns.filter((elem) => elem.hasNoLogs === 'yes').length
       } VPNs que sí garantizan No-Logs`,
     },
     {
       title: 'Pago Anónimo',
       text: '¿puedes pagar de forma anónima?',
-      value: manageBool(vpn.anonPay),
+      value: vpn.hasAnonPay,
       seeMore: `mira ${
-        vpns.filter((elem) => elem.anonPay === 'yes').length
+        vpns.filter((elem) => elem.hasAnonPay === 'yes').length
       } VPNs que sí tienen pago anónimo`,
     },
     {
       title: 'Pago con Criptomonedas',
       text: `¿tiene ${vpn.name} opción de pago con criptomoneda?`,
-      value: manageBool(vpn.cryptoPay),
+      value: vpn.hasCryptoPay,
       seeMore: `mira ${
-        vpns.filter((elem) => elem.cryptoPay === 'yes').length
+        vpns.filter((elem) => elem.hasCryptoPay === 'yes').length
       } VPNs que sí aceptan pago con cripto`,
     },
   ];
 
-  let country;
-  let emoji;
-  if (vpn.basedIn) {
-    emoji = flag(vpn.basedIn);
-    country = getCountry(vpn.basedIn);
-  }
   return (
     <Section id="details">
       <StyledTitle>Detalles</StyledTitle>
       {details.map(
         (detail) =>
-          detail.value !== undefined && (
+          detail.value && (
             <Row key={detail.title}>
               <div className="title">
                 <h3>{detail.title}</h3>
                 {detail.text && <span>{detail.text}</span>}
               </div>
-              <p className="detail">{detail.value ? '✅ sí' : '❌ no'}</p>
+              <p className="detail">
+                {detail.value === 'yes' ? '✅ sí' : '❌ no'}
+              </p>
               <div className="see-more">
-                {!detail.value && <a href="/">{detail.seeMore}</a>}
+                {detail.value !== 'yes' && <a href="/">{detail.seeMore}</a>}
               </div>
             </Row>
           )
       )}
-      {vpn.cryptoPay === 'yes' && (
+      {vpn.hasCryptoPay === 'yes' && (
         <Row className="row--longer">
           <div className="title">
             <h3>Criptomonedas aceptadas</h3>
             <span>se aceptan (al menos) estas opciones</span>
           </div>
           <div className="list">
-            {vpn.cryptocurrenciesList.split(',').map((crypto, i) => (
+            {vpn.cryptoList.split(',').map((crypto, i) => (
               <span key={i}>{crypto.replace(/\s/g, '')}</span>
             ))}
           </div>
         </Row>
       )}
-      {vpn.basedIn !== '' && (
+      {vpn.basedIn && (
         <Row className="row--longer">
           <div className="title">
             <h3>País de Registro</h3>
@@ -191,11 +181,9 @@ export function Details({ vpn, vpns }) {
               territorio donde está registrado {vpn.name} y cuyas leyes aplican
             </span>
           </div>
-          {vpn.basedIn && (
-            <p id="country">
-              {emoji} {country}
-            </p>
-          )}
+          <p id="country">
+            {flag(vpn.basedIn)} {getCountry(vpn.basedIn)}
+          </p>
         </Row>
       )}
     </Section>
@@ -204,15 +192,15 @@ export function Details({ vpn, vpns }) {
 
 Details.propTypes = {
   vpn: PropTypes.shape({
-    anonPay: PropTypes.string,
+    hasAnonPay: PropTypes.string,
     basedIn: PropTypes.string,
-    business: PropTypes.string,
-    cryptoPay: PropTypes.string,
-    cryptocurrenciesList: string,
-    name: PropTypes.string,
-    noLogs: PropTypes.string,
-    p2p: PropTypes.string,
-    students: PropTypes.string,
+    hasBusiness: PropTypes.string,
+    hasCryptoPay: PropTypes.string,
+    cryptoList: string,
+    name: PropTypes.string.isRequired,
+    hasNoLogs: PropTypes.string,
+    hasP2P: PropTypes.string,
+    hasStudents: PropTypes.string,
   }),
   vpns: PropTypes.array,
 };

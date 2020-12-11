@@ -20,16 +20,16 @@ export default function Card({ vpn }) {
     countries,
     servers,
     devices,
-    id,
+    code,
     color,
     slug,
     name,
-    moneyBack,
+    hasMoneyBack,
     moneyBackDays,
     appLanguage,
     compatIndex,
-    noLogs,
-    p2p,
+    hasNoLogs,
+    hasP2P,
     rating,
   } = vpn;
   const primary500 = 'hsl(270, 75%, 70%)';
@@ -41,16 +41,16 @@ export default function Card({ vpn }) {
 
   return (
     <StyledCard color={color}>
-      <img src={`/logos/${id}.jpg`} alt={`logo de ${name}`} />
+      <img src={`/logos/${code}.jpg`} alt={`logo de ${name}`} />
       <h2>
         <Link to={`/vpn/${slug}/`}>{name}</Link>
       </h2>
       <CardNumbers numbers={numbers} />
       <ul>
-        {moneyBack && (
+        {hasMoneyBack && (
           <li>
             <IconCertificate color={primary500} />
-            {moneyBack === 'yes' && (
+            {hasMoneyBack === 'yes' && (
               <span>
                 Garantía{' '}
                 <span className="tag">
@@ -58,7 +58,7 @@ export default function Card({ vpn }) {
                 </span>
               </span>
             )}
-            {moneyBack === 'no' && (
+            {hasMoneyBack === 'no' && (
               <span>
                 Sin garantía <span className="tag">de devolución</span>
               </span>
@@ -66,7 +66,7 @@ export default function Card({ vpn }) {
           </li>
         )}
 
-        {appLanguage !== '' && (
+        {appLanguage && (
           <li>
             <IconLanguage color={primary500} />
             {spanish ? (
@@ -95,15 +95,15 @@ export default function Card({ vpn }) {
           </li>
         )}
 
-        {noLogs && (
+        {hasNoLogs && (
           <li>
-            {noLogs === 'yes' && (
+            {hasNoLogs === 'yes' && (
               <>
                 <IconFileShredder color={primary500} />
                 <span>No guarda logs</span>
               </>
             )}
-            {noLogs === 'no' && (
+            {hasNoLogs === 'no' && (
               <>
                 <IconFileSearch color={primary500} />
                 <span>Puede guardar logs</span>
@@ -112,15 +112,15 @@ export default function Card({ vpn }) {
           </li>
         )}
 
-        {p2p && (
+        {hasP2P && (
           <li>
-            {p2p === 'yes' && (
+            {hasP2P === 'yes' && (
               <>
                 <IconCloudDownload color={primary500} />
                 <span>Compatible con P2P</span>
               </>
             )}
-            {p2p === 'no' && (
+            {hasP2P === 'no' && (
               <>
                 <IconCloudDownload color={primary500} />
                 <span>No compatible con P2P</span>
@@ -154,5 +154,20 @@ export default function Card({ vpn }) {
 }
 
 Card.propTypes = {
-  vpn: PropTypes.object,
+  vpn: PropTypes.shape({
+    appLanguage: PropTypes.string,
+    code: PropTypes.string.isRequired,
+    color: PropTypes.string,
+    compatIndex: PropTypes.string,
+    countries: PropTypes.number,
+    devices: PropTypes.string,
+    hasMoneyBack: PropTypes.string,
+    hasNoLogs: PropTypes.string,
+    hasP2P: PropTypes.string,
+    moneyBackDays: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    rating: PropTypes.number,
+    servers: PropTypes.number,
+    slug: PropTypes.string.isRequired,
+  }),
 };

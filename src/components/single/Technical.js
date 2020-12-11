@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
+
 import SingleSection, { StyledTitle } from './Section';
 
 const Row = styled.div`
@@ -81,11 +82,17 @@ const Row = styled.div`
   }
 `;
 
-export function Technical({ vpn, vpns }) {
+export function Technical({
+  name,
+  hasSocks5,
+  moreServices,
+  protocolsList,
+  vpns,
+}) {
   return (
     <SingleSection id="technical">
       <StyledTitle>Detalles Técnicos</StyledTitle>
-      {vpn.protocolsList !== '' && (
+      {protocolsList && (
         <Row>
           <div className="title">
             <h3>Protocolos Disponibles</h3>
@@ -95,7 +102,7 @@ export function Technical({ vpn, vpns }) {
             </span>
           </div>
           <div className="list">
-            {vpn.protocolsList.split(',').map((prot) => (
+            {protocolsList.split(',').map((prot) => (
               <span key={prot}>{prot.replace(/\s/g, '')}</span>
             ))}
           </div>
@@ -104,26 +111,26 @@ export function Technical({ vpn, vpns }) {
       <Row className="row--longer">
         <div className="title">
           <h3>Proxy SOCKS5</h3>
-          <span>¿incluye {vpn.name} este protocolo para proxy?</span>
+          <span>¿incluye {name} este protocolo para proxy?</span>
         </div>
-        <p id="socks">{vpn.socks5 === 'yes' ? '✅ sí' : '❌ no'}</p>
+        <p id="socks">{hasSocks5 === 'yes' ? '✅ sí' : '❌ no'}</p>
         <div className="see-more">
-          {vpn.socks5 !== 'yes' && (
+          {hasSocks5 !== 'yes' && (
             <a href="/">
-              mira {vpns.filter((elem) => elem.socks5 === 'yes').length} VPNs
+              mira {vpns.filter((elem) => elem.hasSocks5 === 'yes').length} VPNs
               que sí tienen SOCKS5
             </a>
           )}
         </div>
       </Row>
-      {vpn.moreList !== '' && (
+      {moreServices && (
         <Row>
           <div className="title">
             <h3>Servicios Adicionales</h3>
-            <span>funciones incluidas cuando te registras en {vpn.name}</span>
+            <span>funciones incluidas cuando te registras en {name}</span>
           </div>
           <div className="list">
-            {vpn.moreList.split(',').map((more, i) => (
+            {moreServices.split(',').map((more, i) => (
               <span key={i}>{more.replace(/$\s/g, '')}</span>
             ))}
           </div>
@@ -134,11 +141,9 @@ export function Technical({ vpn, vpns }) {
 }
 
 Technical.propTypes = {
-  vpn: PropTypes.shape({
-    moreList: PropTypes.string,
-    name: PropTypes.string,
-    protocolsList: PropTypes.string,
-    socks5: PropTypes.string,
-  }),
+  hasSocks5: PropTypes.string,
+  moreServices: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  protocolsList: PropTypes.string,
   vpns: PropTypes.array,
 };

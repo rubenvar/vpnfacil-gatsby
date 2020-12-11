@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import Section, { StyledTitle } from './Section';
@@ -40,8 +41,8 @@ const Row = styled.div`
       text-align: center;
     }
   }
-  // .chart {
-  // }
+  /* .chart {
+  } */
   .see-more {
     text-align: right;
     grid-column: 1 / -1;
@@ -73,17 +74,19 @@ export function Warranty({ vpn, vpns }) {
             después de comprarlo?
           </span>
         </div>
-        <p className="detail">{vpn.moneyBack === 'yes' ? '✅ sí' : '❌ no'}</p>
+        <p className="detail">
+          {vpn.hasMoneyBack === 'yes' ? '✅ sí' : '❌ no'}
+        </p>
         <div className="see-more">
-          {vpn.moneyBack !== 'yes' && (
+          {vpn.hasMoneyBack !== 'yes' && (
             <a href="/">
-              mira {vpns.filter((vpn) => vpn.moneyBack === 'yes').length} VPNs
-              con reembolso
+              mira {vpns.filter((vpn) => vpn.hasMoneyBack === 'yes').length}{' '}
+              VPNs con reembolso
             </a>
           )}
         </div>
       </Row>
-      {vpn.moneyBack === 'yes' && (
+      {vpn.hasMoneyBack === 'yes' && (
         <Row>
           <div className="title">
             <h3>Días de Garantía</h3>
@@ -102,17 +105,19 @@ export function Warranty({ vpn, vpns }) {
             ¿puedes probar GRATIS este VPN, sin que pidan tu tarjeta de crédito?
           </span>
         </div>
-        <p className="detail">{vpn.freeTrial === 'yes' ? '✅ sí' : '❌ no'}</p>
+        <p className="detail">
+          {vpn.hasFreeTrial === 'yes' ? '✅ sí' : '❌ no'}
+        </p>
         <div className="see-more">
-          {vpn.freeTrial !== 'yes' && (
+          {vpn.hasFreeTrial !== 'yes' && (
             <a href="/">
-              mira {vpns.filter((vpn) => vpn.freeTrial === 'yes').length} VPNs
-              con prueba gratis
+              mira {vpns.filter((vpn) => vpn.hasFreeTrial === 'yes').length}{' '}
+              VPNs con prueba gratis
             </a>
           )}
         </div>
       </Row>
-      {vpn.freeTrial === 'yes' && (
+      {vpn.hasFreeTrial === 'yes' && (
         <Row>
           <div className="title">
             <h3>Duración de la Prueba</h3>
@@ -129,3 +134,14 @@ export function Warranty({ vpn, vpns }) {
     </Section>
   );
 }
+
+Warranty.propTypes = {
+  vpn: PropTypes.shape({
+    freeTrialDays: PropTypes.string,
+    hasFreeTrial: PropTypes.string,
+    hasMoneyBack: PropTypes.string,
+    moneyBackDays: PropTypes.string,
+    name: PropTypes.string.isRequired,
+  }),
+  vpns: PropTypes.array,
+};

@@ -62,16 +62,16 @@ export default function List({ vpns }) {
         <>
           <TableHeader />
           {vpns.map((vpn) => (
-            <Row key={vpn.id} vpn={vpn} />
+            <Row key={vpn.code} vpn={vpn} />
           ))}
         </>
       ) : (
-        vpns.map((vpn) => <Card key={vpn.id} vpn={vpn} />)
+        vpns.map((vpn) => <Card key={vpn.code} vpn={vpn} />)
       )}
     </StyledList>
   );
 }
 
 List.propTypes = {
-  vpns: PropTypes.array,
+  vpns: PropTypes.array.isRequired,
 };

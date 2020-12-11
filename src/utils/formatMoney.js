@@ -1,4 +1,5 @@
 export function formatMoney(amount, currency = 'USD') {
+  if (!currency) currency = 'USD';
   const options = {
     style: 'currency',
     currency,

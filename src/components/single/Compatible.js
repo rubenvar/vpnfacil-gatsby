@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { IconExternalLink } from '@tabler/icons';
 import React from 'react';
 import styled from 'styled-components';
+
 import SingleSection, { StyledTitle } from './Section';
 
 const Row = styled.div`
@@ -81,9 +82,9 @@ const SeeMore = styled.p`
 `;
 
 export function Compatible({ vpn, vpns }) {
-  const hasBrowsers = vpn.browserPlugins === 'yes';
   const compatible = [];
-  if (vpn.platforms.length) {
+
+  if (vpn.platforms) {
     compatible.push({
       title: 'Sistemas Operativos',
       text: 'sistemas para los que este VPN tiene software/app especifico',
@@ -91,21 +92,19 @@ export function Compatible({ vpn, vpns }) {
     });
   }
 
-  if (hasBrowsers) {
+  if (vpn.hasBrowserPlugins === 'yes') {
     compatible.push({
       title: 'Navegadores',
       text: `navegadores para los que ${vpn.name} tiene una extensión que puedes instalar`,
-      values: vpn.browsers.split(',').map((item) => item.replace(/\s/g, '')),
+      values: vpn.browserList.split(',').map((item) => item.replace(/\s/g, '')),
     });
   }
 
-  if (vpn.compatibilityList.length) {
+  if (vpn.compatList) {
     compatible.push({
       title: 'Dispositivos',
       text: `más hardware donde puedes instalar este VPN fácilmente`,
-      values: vpn.compatibilityList
-        .split(',')
-        .map((item) => item.replace(/\s/g, '')),
+      values: vpn.compatList.split(',').map((item) => item.replace(/\s/g, '')),
     });
   }
   return (
@@ -130,20 +129,20 @@ export function Compatible({ vpn, vpns }) {
           </div>
         </Row>
       ))}
-      {(vpn.routers === 'yes' || vpn.nas === 'yes') && (
+      {(vpn.hasRouters === 'yes' || vpn.hasNas === 'yes') && (
         <Row>
           <div className="title">
             <h3>Otros</h3>
           </div>
           <div className="list">
-            {vpn.routers === 'yes' && (
+            {vpn.hasRouters === 'yes' && (
               <div className="platform">
                 <img src="/compatible/routers.png" alt="Logo de Routers" />
                 <span>Routers</span>
               </div>
             )}
 
-            {vpn.nas === 'yes' && (
+            {vpn.hasNas === 'yes' && (
               <div className="platform">
                 <img src="/compatible/nas.png" alt="Logo de NAS" />
                 <span>NAS</span>
@@ -155,8 +154,9 @@ export function Compatible({ vpn, vpns }) {
       {vpn.compatIndex < 12 && (
         <SeeMore>
           <a href="/">
-            Mira aquí {vpns.filter((elem) => elem.compatIndex > 11).length} VPNs
-            con mayor compatibilidad{' '}
+            Mira aquí{' '}
+            {vpns.filter((elem) => +elem.compatIndex > +vpn.compatIndex).length}{' '}
+            VPNs con mayor compatibilidad{' '}
             <IconExternalLink color="hsl(270, 75%, 70%)" />
           </a>
         </SeeMore>
@@ -167,14 +167,14 @@ export function Compatible({ vpn, vpns }) {
 
 Compatible.propTypes = {
   vpn: PropTypes.shape({
-    browserPlugins: PropTypes.string,
-    browsers: PropTypes.string,
+    hasBrowserPlugins: PropTypes.string,
+    browserList: PropTypes.string,
     compatIndex: PropTypes.string,
-    compatibilityList: PropTypes.string,
+    compatList: PropTypes.string,
     name: PropTypes.any,
-    nas: PropTypes.string,
+    hasNas: PropTypes.string,
     platforms: PropTypes.string,
-    routers: PropTypes.string,
+    hasRouters: PropTypes.string,
   }),
   vpns: PropTypes.array,
 };

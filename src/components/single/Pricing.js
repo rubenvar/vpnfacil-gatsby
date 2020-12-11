@@ -53,21 +53,22 @@ const PricingTable = styled.div`
 `;
 
 export function Pricing({ vpn }) {
+  const currency = vpn.planCurrency || 'USD';
   const plans = [
     {
       duration: vpn.plan1Length,
       price: vpn.plan1Pricing,
-      currency: vpn.plan1Currency,
+      currency,
     },
     {
       duration: vpn.plan2Length,
       price: vpn.plan2Pricing,
-      currency: vpn.plan2Currency || 'USD',
+      currency: vpn.plan2Pricing ? currency : null,
     },
     {
       duration: vpn.plan3Length,
       price: vpn.plan3Pricing,
-      currency: vpn.plan3Currency,
+      currency,
     },
   ];
 
@@ -81,6 +82,7 @@ export function Pricing({ vpn }) {
         ) / 100
       : false;
   });
+
   return (
     <SingleSection id="pricing">
       <StyledTitle>Precios</StyledTitle>
@@ -146,14 +148,12 @@ export function Pricing({ vpn }) {
 Pricing.propTypes = {
   vpn: PropTypes.shape({
     link: PropTypes.string,
-    plan1Currency: PropTypes.string,
-    plan1Length: PropTypes.number,
-    plan1Pricing: PropTypes.number,
-    plan2Currency: PropTypes.string,
-    plan2Length: PropTypes.number,
-    plan2Pricing: PropTypes.number,
-    plan3Currency: PropTypes.string,
-    plan3Length: PropTypes.number,
-    plan3Pricing: PropTypes.number,
+    plan1Length: PropTypes.string,
+    plan1Pricing: PropTypes.string,
+    plan2Length: PropTypes.string,
+    plan2Pricing: PropTypes.string,
+    plan3Length: PropTypes.string,
+    plan3Pricing: PropTypes.string,
+    planCurrency: PropTypes.string,
   }),
 };

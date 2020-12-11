@@ -1,46 +1,30 @@
-require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV}`,
-});
-const axios = require('axios');
-const { awsConfig } = require('./config');
-
-async function getVpns() {
-  const response = await axios.get(process.env.ENDPOINT, awsConfig);
-  if (response.data.statusCode !== 200) {
-    /* eslint-disable no-console */
-    console.error('some error.....');
-    console.error(response.data);
-    /* eslint-enable no-console */
-    return [];
-  }
-  return response.data.body;
-}
-
 exports.createPages = async ({ actions, graphql, reporter }) => {
-  // 1. Create VPN pages from API (single vpns and index page):
-  // fetch data
-  const allVpns = await getVpns();
-  const count = allVpns.length;
+  // 1. Create VPN pages from graphQL query
+  // get all slugs
+  const vpns = await graphql(`
+    query {
+      vpns: allGoogleListSheet {
+        nodes {
+          slug
+        }
+      }
+    }
+  `);
 
-  // list all
-  actions.createPage({
-    path: `/`,
-    component: require.resolve('./src/templates/all.js'),
-    context: { allVpns, count },
-  });
-
-  // each VPN
-  allVpns.forEach((vpn) => {
+  // single VPN pages
+  vpns.data.vpns.nodes.forEach((vpn) => {
     actions.createPage({
-      path: `/vpn/${vpn.slug}/`,
-      component: require.resolve('./src/templates/vpn.js'),
-      context: { allVpns, vpn },
+      path: `/vpn/${vpn.slug}`,
+      component: require.resolve(`./src/templates/vpn.js`),
+      context: {
+        slug: vpn.slug,
+      },
     });
   });
 
   // 2. Create posts from .mdx files:
   // get all posts
-  const { errors, data } = await graphql(`
+  const posts = await graphql(`
     {
       allPosts: allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
         nodes {
@@ -53,12 +37,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   `);
 
   // Handle errors
-  if (errors) {
+  if (posts.errors) {
     reporter.panicOnBuild(`Error while running GraphQL query.`);
   }
 
   // create the posts
-  data.allPosts.nodes.forEach((post) => {
+  posts.data.allPosts.nodes.forEach((post) => {
     actions.createPage({
       path: `/guias/${post.frontmatter.slug}`,
       component: require.resolve(`./src/templates/post.js`),

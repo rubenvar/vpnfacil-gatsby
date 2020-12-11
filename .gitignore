@@ -71,3 +71,4 @@ yarn-error.log
 #
 .vscode/
 WORK.md
+client_secret.json
