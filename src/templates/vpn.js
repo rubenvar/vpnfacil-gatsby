@@ -19,7 +19,7 @@ import SingleSection from '../components/single/Section';
 
 export default function SingleVpn({ data }) {
   const { vpn } = data;
-  const allVpns = data.allGoogleListSheet.nodes;
+  const allVpns = data.vpns.nodes;
 
   const testExists = false;
   const reviewExists = false;
@@ -130,7 +130,7 @@ export const query = graphql`
       plan3Pricing
       planCurrency
     }
-    allGoogleListSheet {
+    vpns: allGoogleListSheet {
       nodes {
         code
         servers
@@ -168,7 +168,6 @@ SingleVpn.propTypes = {
       slug: PropTypes.string.isRequired,
       hasSocks5: PropTypes.string,
     }).isRequired,
-    allGoogleListSheet: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
-      .isRequired,
+    vpns: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
   }),
 };
