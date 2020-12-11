@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
+import { graphql, useStaticQuery } from 'gatsby';
 import { awsConfig } from '../../../config';
 import TableContainer from './TableContainer';
 
@@ -54,27 +55,31 @@ const ComparativaContainer = styled(TableContainer)`
   }
 `;
 
+const vpnQuery = graphql`
+  query MyQuery {
+    vpns: allGoogleListSheet(sort: { fields: rating, order: DESC }, limit: 10) {
+      nodes {
+        name
+        link
+        code
+        servers
+        countries
+        devices
+        hasMoneyBack
+        moneyBackDays
+        appLanguage
+        rating
+        hasBrowserPlugins
+        hasP2P
+        hasNoLogs
+      }
+    }
+  }
+`;
+
 export default function VpnData() {
-  const [vpns, setVpns] = useState(null);
-
-  useEffect(() => {
-    const getVpns = () => {
-      axios.get(process.env.ENDPOINT, awsConfig).then((res) => {
-        if (!res.data.body) return setVpns([]);
-        const allVpns = [...res.data.body];
-        const bestVpns = allVpns
-          .sort((a, b) => {
-            if (a.rating > b.rating) return -1;
-            if (a.rating < b.rating) return 1;
-            return 0;
-          })
-          .filter((vpn, i) => i < 10);
-
-        return setVpns(bestVpns);
-      });
-    };
-    getVpns();
-  }, []);
+  const data = useStaticQuery(vpnQuery);
+  const vpns = data.vpns.nodes;
 
   if (!vpns)
     return (
@@ -107,7 +112,7 @@ export default function VpnData() {
               <td className="img">
                 <img
                   height="30px"
-                  src={`/logos/${vpn.id}.jpg`}
+                  src={`/logos/${vpn.code}.jpg`}
                   alt={`Logo de ${vpn.name}`}
                 />
               </td>
@@ -118,8 +123,8 @@ export default function VpnData() {
                 {vpn.devices === 'unlimited' ? '∞' : vpn.devices}
               </td>
               <td className="money-back">
-                {vpn.moneyBack === 'yes' ? '✅' : '❌'}
-                {vpn.moneyBack === 'yes' && (
+                {vpn.hasMoneyBack === 'yes' ? '✅' : '❌'}
+                {vpn.hasMoneyBack === 'yes' && (
                   <>
                     {' '}
                     {vpn.moneyBackDays}
@@ -135,10 +140,12 @@ export default function VpnData() {
                   : '-'}
               </td>
               <td className="browsers">
-                {vpn.browserPlugins === 'yes' ? '✅' : '❌'}
+                {vpn.hasBrowserPlugins === 'yes' ? '✅' : '❌'}
               </td>
-              <td className="p2p">{vpn.p2p === 'yes' ? '✅' : '❌'}</td>
-              <td className="no-logs">{vpn.noLogs === 'yes' ? '✅' : '❌'}</td>
+              <td className="p2p">{vpn.hasP2P === 'yes' ? '✅' : '❌'}</td>
+              <td className="no-logs">
+                {vpn.hasNoLogs === 'yes' ? '✅' : '❌'}
+              </td>
               <td className="mas-info">
                 <a href={vpn.link}>Más info</a>
               </td>

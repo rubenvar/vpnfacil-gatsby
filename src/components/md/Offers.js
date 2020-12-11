@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
 
-import { awsConfig } from '../../../config';
 import OfferCard from './OfferCard';
 
 const texts = {
@@ -20,25 +19,28 @@ const texts = {
   },
 };
 
+const vpnQuery = graphql`
+  query {
+    vpns: allGoogleListSheet(
+      filter: { code: { in: ["F001", "F004", "F019"] } }
+    ) {
+      nodes {
+        name
+        code
+        link
+        plan1Pricing
+        planCurrency
+        plan3Length
+        plan3Pricing
+        rating
+      }
+    }
+  }
+`;
+
 export default function Offers() {
-  const [vpns, setVpns] = useState(null);
-
-  useEffect(() => {
-    const getVpns = () => {
-      axios.get(process.env.ENDPOINT, awsConfig).then((res) => {
-        const allVpns = [...res.data.body];
-        // get the vpns that match ids from id array
-        const topIds = ['F001', 'F004', 'F019'];
-        const topVpns = allVpns.filter((vpn) =>
-          topIds.some((id) => id === vpn.id)
-        );
-        // mabe not the most efficient way, but the number of items in arrays is really small 🤷‍♂️
-
-        setVpns(topVpns);
-      });
-    };
-    getVpns();
-  }, []);
+  const data = useStaticQuery(vpnQuery);
+  const vpns = data.vpns.nodes;
 
   if (!vpns)
     return (
@@ -47,12 +49,12 @@ export default function Offers() {
 
   return (
     <>
-      {vpns.map((vpn, i) => (
+      {vpns.map((vpn) => (
         <OfferCard
-          key={i}
+          key={vpn.code}
           vpn={vpn}
-          subtitle={texts[vpn.id].subtitle}
-          comment={texts[vpn.id].comment}
+          subtitle={texts[vpn.code].subtitle}
+          comment={texts[vpn.code].comment}
         />
       ))}
     </>
