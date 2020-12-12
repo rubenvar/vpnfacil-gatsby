@@ -66,19 +66,23 @@ export function Numbers({ vpn, vpns }) {
     .sort((a, b) => (a.value < b.value ? 1 : -1));
   const ipsData = vpns
     .filter((vpn) => vpn.ips > 0)
-    .map((vpn) => ({ name: vpn.name, code: vpn.code, value: vpn.ips }))
+    .map((vpn) => ({ name: vpn.name, code: vpn.code, value: +vpn.ips }))
     .sort((a, b) => (a.value < b.value ? 1 : -1));
   const countriesData = vpns
     .filter((vpn) => vpn.countries > 0)
-    .map((vpn) => ({ name: vpn.name, code: vpn.code, value: vpn.countries }))
+    .map((vpn) => ({ name: vpn.name, code: vpn.code, value: +vpn.countries }))
     .sort((a, b) => (a.value < b.value ? 1 : -1));
   const locationsData = vpns
     .filter((vpn) => vpn.locations > 0)
-    .map((vpn) => ({ name: vpn.name, code: vpn.code, value: vpn.locations }))
+    .map((vpn) => ({ name: vpn.name, code: vpn.code, value: +vpn.locations }))
     .sort((a, b) => (a.value < b.value ? 1 : -1));
   const devicesData = vpns
-    .filter((vpn) => vpn.devices > 0)
-    .map((vpn) => ({ name: vpn.name, code: vpn.code, value: vpn.devices }))
+    .filter((vpn) => vpn.devices !== null)
+    .map((vpn) => ({
+      name: vpn.name,
+      code: vpn.code,
+      value: vpn.devices === 'unlimited' ? 20 : +vpn.devices,
+    }))
     .sort((a, b) => (a.value < b.value ? 1 : -1));
 
   const numbers = [
@@ -139,7 +143,7 @@ export function Numbers({ vpn, vpns }) {
                 )}
               </p>
               <div className="chart">
-                {number.title !== 'IPs' && number.title !== 'Dispositivos' && (
+                {number.title !== 'IPs' && (
                   <BarChart
                     title={number.title}
                     data={number.data}

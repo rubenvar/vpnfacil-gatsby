@@ -132,6 +132,7 @@ export const query = graphql`
     }
     vpns: allGoogleListSheet {
       nodes {
+        name
         code
         servers
         ips

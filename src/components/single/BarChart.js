@@ -9,9 +9,27 @@ export default function BarChart({ title, data, single, color }) {
   data[ind].color = color;
 
   // prepare data
-  const dataArray = [['vpn', title, { role: 'style' }]];
-  data.forEach((obj) => dataArray.push([obj.name, obj.value, obj.color]));
-
+  const dataArray = [
+    ['vpn', title, { role: 'style' }, { type: 'string', role: 'tooltip' }],
+  ];
+  // custom text for tooltips
+  function createTooltipText(vpnName, value) {
+    if (title !== 'Dispositivos') {
+      return `${vpnName}: ${value} ${title.toLowerCase()}`;
+    }
+    if (value === 20) return `${vpnName}: dispositivos ilimitados`;
+    return `${vpnName}: ${value} dispositivos`;
+  }
+  // create data for the chart
+  data.forEach((obj) =>
+    dataArray.push([
+      obj.name,
+      obj.value,
+      obj.color,
+      createTooltipText(obj.name, obj.value),
+    ])
+  );
+  // chart options
   const options = {
     animation: { startup: true, duration: 250 },
     backgroundColor: {
