@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-- Backend data is kept in a Google Spreadsheet 😎: Replaced fetching the data from a REST API a Lambda function. Now the data is sourced with a GraphQL query through a gatsby plugin (`gatsby-source-google-spreadsheets`).
+- Backend data is kept in a Google Spreadsheet 😎: Replaced fetching the data from a REST API a Lambda function. Now the data is sourced on build with a GraphQL query through a Gatsby plugin (`gatsby-source-google-spreadsheets`).
 
 ### Fixed
 
