@@ -12,11 +12,11 @@ module.exports = {
     color: `#b379ec`,
   },
   flags: {
-    PRESERVE_WEBPACK_CACHE: true,
-    FAST_REFRESH: true,
-    PRESERVE_FILE_DOWNLOAD_CACHE: true,
-    DEV_SSR: true,
-    FAST_DEV: true,
+    PRESERVE_WEBPACK_CACHE: process.env.NODE_ENV === 'development',
+    FAST_REFRESH: process.env.NODE_ENV === 'development',
+    PRESERVE_FILE_DOWNLOAD_CACHE: process.env.NODE_ENV === 'development',
+    DEV_SSR: process.env.NODE_ENV === 'development',
+    FAST_DEV: process.env.NODE_ENV === 'development',
   },
   plugins: [
     {
