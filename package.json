@@ -18,6 +18,7 @@
     "@react-hook/window-size": "^3.0.7",
     "@rubenvara/react-star-rating": "^1.0.1",
     "@tabler/icons": "^1.38.1",
+    "axios": "^0.21.1",
     "country-code-emoji": "^2.2.0",
     "country-list-spanish": "^0.2.1",
     "dotenv": "^8.2.0",
