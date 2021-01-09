@@ -11,6 +11,13 @@ module.exports = {
     siteUrl: `https://vpnfacil.com`,
     color: `#b379ec`,
   },
+  flags: {
+    PRESERVE_WEBPACK_CACHE: true,
+    FAST_REFRESH: true,
+    PRESERVE_FILE_DOWNLOAD_CACHE: true,
+    DEV_SSR: true,
+    FAST_DEV: true,
+  },
   plugins: [
     {
       resolve: `gatsby-source-google-spreadsheets`,
