@@ -129,8 +129,7 @@ export function Pricing({ vpn }) {
                 <p clas="row">
                   {plan.discount ? (
                     <>
-                      {formatPercent(plan.discount)}
-                      <span>ahorro</span>
+                      {formatPercent(plan.discount)} <span>ahorro</span>
                     </>
                   ) : (
                     '-'
