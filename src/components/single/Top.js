@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import flag from 'country-code-emoji';
+import { countryCodeEmoji } from 'country-code-emoji';
 import { getCountry } from 'country-list-spanish';
 
 import StarRating from '@rubenvara/react-star-rating';
@@ -115,7 +115,7 @@ export function Top({ vpn }) {
               {vpn.countries ? <span>{vpn.countries} países</span> : null}
               {vpn.basedIn && (
                 <span>
-                  {flag(vpn.basedIn)} {getCountry(vpn.basedIn)}
+                  {countryCodeEmoji(vpn.basedIn)} {getCountry(vpn.basedIn)}
                 </span>
               )}
               {vpn.hasMoneyBack === 'yes' ? (

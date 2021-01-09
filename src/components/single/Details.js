@@ -1,6 +1,6 @@
 import PropTypes, { string } from 'prop-types';
 import React from 'react';
-import flag from 'country-code-emoji';
+import { countryCodeEmoji } from 'country-code-emoji';
 import { getCountry } from 'country-list-spanish';
 import styled from 'styled-components';
 
@@ -182,7 +182,7 @@ export function Details({ vpn, vpns }) {
             </span>
           </div>
           <p id="country">
-            {flag(vpn.basedIn)} {getCountry(vpn.basedIn)}
+            {countryCodeEmoji(vpn.basedIn)} {getCountry(vpn.basedIn)}
           </p>
         </Row>
       )}
