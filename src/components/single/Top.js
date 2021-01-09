@@ -7,8 +7,8 @@ import { getCountry } from 'country-list-spanish';
 import StarRating from '@rubenvara/react-star-rating';
 import Section from './Section';
 import Button from './Button';
-// import { takeNewScreenshot } from '../../utils';
 import { formatMoney, insertString } from '../../utils';
+// import { takeNewScreenshot } from '../../utils';
 
 const StyledTop = styled.div`
   --vpnColor: ${({ vpnColor }) => vpnColor || 'black'};
@@ -82,6 +82,33 @@ export function Top({ vpn }) {
     const { index } = after;
     if (index) screenshot = insertString(screenshot, index, `/${transf}`);
   }
+
+  //* All this works:
+  //* Stores screenshot to cloudinary
+  //* And saved url in VPN List V2 spreadsheet
+  //* But next load, screenshot is still empty until I rebuild the page and re-source it
+  //* So will need to find a better way to do it, probably run this on-build (pre-build)
+  // // Let's see if screenshot needs updating...
+  // // check if there is screenshot:
+  // if (vpn.screenshot) {
+  //   const existingScreenshot = vpn.screenshot;
+  //   console.log({ existingScreenshot });
+  //   // get link, get time with regex (it comes in seconds, not ms)
+  //   const taken = existingScreenshot.match(/\/v(\d+)\//)[1];
+  //   console.log({ taken });
+  //   const now = Math.round(Date.now() / 1000);
+  //   // calculate if it's older than 15 days
+  //   const max = 15 * 24 * 60 * 60;
+  //   const isOld = now - taken > max;
+  //   console.log({ isOld });
+  //   // if it's recent, do nothing
+  //   // if it's old, call lambda
+  //   if (isOld) takeNewScreenshot(vpn.code, vpn.baseLink);
+  // } else if (vpn.screenshot === null) {
+  //   // if no screenshot, take one
+  //   console.log('screenshot is empty, I make a new one');
+  //   takeNewScreenshot(vpn.code, vpn.baseLink);
+  // }
 
   return (
     <Section id="top" wide>
@@ -175,6 +202,7 @@ Top.propTypes = {
   vpn: PropTypes.shape({
     appLanguage: PropTypes.string,
     basedIn: PropTypes.string,
+    baseLink: PropTypes.string,
     color: PropTypes.string.isRequired,
     compatIndex: PropTypes.string.isRequired,
     countries: PropTypes.number,
@@ -194,22 +222,3 @@ Top.propTypes = {
     screenshot: PropTypes.string,
   }),
 };
-
-// // Let's see if screenshot needs updating...
-// // check if there is screenshot:
-// if (vpn.screenshot !== '') {
-//   const existingScreenshot = vpn.screenshot;
-//   // get link, get time with regex (it comes in seconds, not ms)
-//   const taken = existingScreenshot.match(/\/v(\d+)\//)[1];
-//   const now = Math.round(Date.now() / 1000);
-//   // calculate if it's older than 15 days
-//   const max = 15 * 24 * 60 * 60;
-//   const isOld = now - taken > max;
-//   // if it's recent, do nothing
-//   // if it's old, call lambda
-//   if (isOld) takeNewScreenshot(vpn.id, vpn.baseLink);
-// } else if (vpn.screenshot === '') {
-//   // if no screenshot, take one
-//   console.log('screenshot is empty, I make a new one');
-//   takeNewScreenshot(vpn.id, vpn.baseLink);
-// }
