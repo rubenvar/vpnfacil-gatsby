@@ -4,7 +4,7 @@
   "description": "A list of many VPN services. A static site built with Gatsby",
   "version": "2.1.0",
   "scripts": {
-    "dev": "gatsby develop",
+    "dev": "GATSBY_EXPERIMENTAL_REMOTE_IMAGES=1 gatsby develop",
     "build": "gatsby build",
     "start": "npm run dev",
     "serve": "gatsby serve",
@@ -28,7 +28,6 @@
     "gatsby-image": "^2.9.0",
     "gatsby-plugin-catch-links": "^2.8.0",
     "gatsby-plugin-google-gtag": "^2.6.0",
-    "gatsby-plugin-image": "^0.5.0",
     "gatsby-plugin-manifest": "^2.10.0",
     "gatsby-plugin-mdx": "^1.8.0",
     "gatsby-plugin-react-helmet": "^3.8.0",
