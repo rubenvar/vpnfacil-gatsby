@@ -3,6 +3,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { countryCodeEmoji } from 'country-code-emoji';
 import { getCountry } from 'country-list-spanish';
+import { format } from 'date-fns';
+import { es } from 'date-fns/locale';
 
 import StarRating from '@rubenvara/react-star-rating';
 import Section from './Section';
@@ -56,14 +58,23 @@ const StyledTop = styled.div`
       }
     }
   }
-  img {
-    border: 3px solid var(--vpnColor);
-    border-radius: var(--cardRadius);
-    box-shadow: var(--boxShadow);
-    transition: all 0.3s;
-    transform: rotate(1.5deg);
-    &:hover {
-      transform: scale(1.02) rotate(3deg);
+  .img {
+    img {
+      border: 3px solid var(--vpnColor);
+      border-radius: var(--cardRadius);
+      box-shadow: var(--boxShadow);
+      transition: all 0.3s;
+      transform: rotate(1.5deg);
+      &:hover {
+        transform: scale(1.02) rotate(3deg);
+      }
+    }
+    .updated {
+      font-size: 14px;
+      margin-bottom: 0;
+      margin-top: 20px;
+      color: var(--grey300);
+      text-align: right;
     }
   }
 `;
@@ -109,6 +120,13 @@ export function Top({ vpn }) {
   //   console.log('screenshot is empty, I make a new one');
   //   takeNewScreenshot(vpn.code, vpn.baseLink);
   // }
+
+  // check if upated date is recent enough to show it
+  const now = new Date();
+  const updated = new Date(vpn.updated);
+  const diff = now - updated;
+  const sixMonthsMs = 6 * 30 * 24 * 60 * 60 * 1000;
+  const isUpdatedRecent = diff < sixMonthsMs;
 
   return (
     <Section id="top" wide>
@@ -181,18 +199,25 @@ export function Top({ vpn }) {
           </div>
           <Button link={vpn.link} text="ver oferta AHORA" main />
         </div>
-        <a
-          href={vpn.link}
-          target="_blank"
-          rel="noreferrer"
-          title={`Accede a ${vpn.name}`}
-        >
-          <img
-            src={screenshot}
-            alt={`Página principal de ${vpn.name}`}
+        <div className="img">
+          <a
+            href={vpn.link}
+            target="_blank"
+            rel="noreferrer"
             title={`Accede a ${vpn.name}`}
-          />
-        </a>
+          >
+            <img
+              src={screenshot}
+              alt={`Página principal de ${vpn.name}`}
+              title={`Accede a ${vpn.name}`}
+            />
+          </a>
+          {isUpdatedRecent && (
+            <p className="updated">
+              Info actualizada en {format(updated, 'MMMM yyyy', { locale: es })}
+            </p>
+          )}
+        </div>
       </StyledTop>
     </Section>
   );
@@ -220,5 +245,6 @@ Top.propTypes = {
     plan3Pricing: PropTypes.string,
     rating: PropTypes.number.isRequired,
     screenshot: PropTypes.string,
+    updated: PropTypes.string,
   }),
 };
