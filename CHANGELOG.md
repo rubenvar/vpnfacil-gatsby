@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.1] - 2021-01-15
+
+### Added
+
+- Added VPN updated date to top section.
+
 ## [2.1.0] - 2020-12-11
 
 ### Changed
