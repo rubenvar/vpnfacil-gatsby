@@ -78,7 +78,7 @@ export const pageQuery = graphql`
       id
       body
       frontmatter {
-        textDate: date(formatString: "DD [de] MMMM, YYYY", locale: "es-ES")
+        textDate: date(formatString: "D [de] MMMM, YYYY", locale: "es-ES")
         rawDate: date(formatString: "YYYY-MM-DD")
         slug
         title
