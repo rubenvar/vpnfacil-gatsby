@@ -5,9 +5,9 @@ import OfferCard from './OfferCard';
 
 const texts = {
   F001: {
-    subtitle: '💰 70% descuento',
+    subtitle: '💰 69% descuento',
     comment:
-      'O sea, pagas ahora 112 euros (en vez de 383€) y tienes VPN para tres años!',
+      'O sea, pagas ahora 75,60 euros (en vez de 244€) y tienes VPN para dos años!',
   },
   F004: {
     subtitle: '🎁 te regalan 2 meses',
@@ -15,7 +15,7 @@ const texts = {
   },
   F019: {
     subtitle: '🚀 el más Barato',
-    comment: 'Pagas ahora 40 euritos, y tienes VPN para 2 añazos',
+    comment: 'Pagas ahora menos de 50 euritos, y tienes VPN para 2 añazos',
   },
 };
 
