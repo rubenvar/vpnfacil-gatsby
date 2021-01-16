@@ -127,6 +127,7 @@ export function Top({ vpn }) {
   const diff = now - updated;
   const sixMonthsMs = 6 * 30 * 24 * 60 * 60 * 1000;
   const isUpdatedRecent = diff < sixMonthsMs;
+  console.log(vpn.devices);
 
   return (
     <Section id="top" wide>
@@ -153,7 +154,7 @@ export function Top({ vpn }) {
               {vpn.devices ? (
                 <span>
                   {vpn.devices === 'unlimited' ? '∞' : vpn.devices} dispositivo
-                  {vpn.devices !== 1 && 's'}
+                  {vpn.devices !== '1' && 's'}
                 </span>
               ) : null}
 
