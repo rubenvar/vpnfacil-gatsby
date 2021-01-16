@@ -99,6 +99,7 @@ export function Nav({
           {reviewExists && (
             <span onClick={() => scrollTo('#review')}>Review</span>
           )}
+          <span onClick={() => scrollTo('#top')}>Volver arriba ⬆</span>
         </nav>
       </div>
     </Bar>
