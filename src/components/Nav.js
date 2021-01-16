@@ -31,7 +31,7 @@ export default function Nav() {
       </button>
       <ul>
         <li>
-          <Link to="/guias/ofertas-vpn-2020/">Mejores Ofertas 2020</Link>
+          <Link to="/guias/ofertas-vpn-2021/">Mejores Ofertas 2021</Link>
         </li>
         <li>
           <Link to="/guias/">Guias</Link>
