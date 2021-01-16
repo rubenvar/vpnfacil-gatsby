@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.0] - 2021-01-15
+
+### Added
+
+- Added `<time>` tags in single post date.
+- Added `<time>` tags in single vpn updated date.
+
+### Changed
+
+- Updated _3 mejores ofertas_ post to 2021.
+- Updated _10 mejores vpn_ post to 2021.
+- Updated other posts.
+
 ## [2.1.1] - 2021-01-15
 
 ### Added
