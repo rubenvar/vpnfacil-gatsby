@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Fixed
+
+- Removed console.log 😓.
+
 ## [2.2.1] - 2021-01-17
 
 ### Added
