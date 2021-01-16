@@ -50,7 +50,7 @@ export default function List({ vpns }) {
         // convert 'unlimited' string to big number
         if (first === 'unlimited') first = 999;
         if (sec === 'unlimited') sec = 999;
-        // to numbers
+        // all to numbers for proper sorting
         if (first) first = +first;
         if (sec) sec = +sec;
       }
