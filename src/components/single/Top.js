@@ -127,7 +127,6 @@ export function Top({ vpn }) {
   const diff = now - updated;
   const sixMonthsMs = 6 * 30 * 24 * 60 * 60 * 1000;
   const isUpdatedRecent = diff < sixMonthsMs;
-  console.log(vpn.devices);
 
   return (
     <Section id="top" wide>
