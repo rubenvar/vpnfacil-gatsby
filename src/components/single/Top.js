@@ -69,7 +69,7 @@ const StyledTop = styled.div`
         transform: scale(1.02) rotate(3deg);
       }
     }
-    .updated {
+    #updated {
       font-size: 14px;
       margin-bottom: 0;
       margin-top: 20px;
@@ -213,8 +213,11 @@ export function Top({ vpn }) {
             />
           </a>
           {isUpdatedRecent && (
-            <p className="updated">
-              Info actualizada en {format(updated, 'MMMM yyyy', { locale: es })}
+            <p id="updated">
+              Info actualizada en{' '}
+              <time dateTime={vpn.updated}>
+                {format(updated, 'MMMM yyyy', { locale: es })}
+              </time>
             </p>
           )}
         </div>

@@ -44,7 +44,7 @@ const StyledPost = styled.div`
 
 export default function PostTemplate({ data }) {
   const { frontmatter, body } = data.post;
-  const { seoTitle, title, excerpt, slug, date } = frontmatter;
+  const { seoTitle, title, excerpt, slug, textDate, rawDate } = frontmatter;
   return (
     <>
       <Helmet>
@@ -56,7 +56,9 @@ export default function PostTemplate({ data }) {
       <StyledPost>
         <header>
           <h1>{title}</h1>
-          <p>Actualizado: {date}</p>
+          <p>
+            Actualizado: <time dateTime={rawDate}>{textDate}</time>
+          </p>
         </header>
         <article className="blog-post">
           <MDXRenderer>{body}</MDXRenderer>
@@ -76,7 +78,8 @@ export const pageQuery = graphql`
       id
       body
       frontmatter {
-        date(formatString: "DD [de] MMMM, YYYY", locale: "es-ES")
+        textDate: date(formatString: "DD [de] MMMM, YYYY", locale: "es-ES")
+        rawDate: date(formatString: "YYYY-MM-DD")
         slug
         title
         seoTitle
