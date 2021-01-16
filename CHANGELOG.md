@@ -2,7 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
-## [2.2.0] - 2021-01-15
+## [2.2.1] - 2021-01-17
+
+### Added
+
+- Added "go to top" link in single vpn nav.
+- New vpn.
+
+### Fixed
+
+- Fixed plural in single vpn top tags.
+- Fixed sorting by devices in main list (devices was `String` so sorting was not working properly).
+
+## [2.2.0] - 2021-01-16
 
 ### Added
 
