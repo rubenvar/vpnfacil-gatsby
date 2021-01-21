@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -41,3 +42,9 @@ export default function SingleSection({ children, wide = false, id = '' }) {
     </Section>
   );
 }
+
+SingleSection.propTypes = {
+  children: PropTypes.object,
+  id: PropTypes.string,
+  wide: PropTypes.bool,
+};
