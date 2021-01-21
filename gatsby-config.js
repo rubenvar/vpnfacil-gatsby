@@ -118,5 +118,12 @@ module.exports = {
         trackingIds: [process.env.GA_TAG],
       },
     },
+    `@sentry/gatsby`,
+    // {
+    //   resolve: "@sentry/gatsby",
+    //   options: {
+    //     tracesSampleRate: 1,
+    //   },
+    // },
   ],
 };
