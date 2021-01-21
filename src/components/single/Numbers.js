@@ -61,27 +61,43 @@ const Row = styled.div`
 
 export function Numbers({ vpn, vpns }) {
   const serversData = vpns
-    .filter((vpn) => vpn.servers > 0)
-    .map((vpn) => ({ name: vpn.name, code: vpn.code, value: vpn.servers }))
+    .filter((eachVpn) => eachVpn.servers > 0)
+    .map((eachVpn) => ({
+      name: eachVpn.name,
+      code: eachVpn.code,
+      value: eachVpn.servers,
+    }))
     .sort((a, b) => (a.value < b.value ? 1 : -1));
   const ipsData = vpns
-    .filter((vpn) => vpn.ips > 0)
-    .map((vpn) => ({ name: vpn.name, code: vpn.code, value: +vpn.ips }))
+    .filter((eachVpn) => eachVpn.ips > 0)
+    .map((eachVpn) => ({
+      name: eachVpn.name,
+      code: eachVpn.code,
+      value: +eachVpn.ips,
+    }))
     .sort((a, b) => (a.value < b.value ? 1 : -1));
   const countriesData = vpns
-    .filter((vpn) => vpn.countries > 0)
-    .map((vpn) => ({ name: vpn.name, code: vpn.code, value: +vpn.countries }))
+    .filter((eachVpn) => eachVpn.countries > 0)
+    .map((eachVpn) => ({
+      name: eachVpn.name,
+      code: eachVpn.code,
+      value: +eachVpn.countries,
+    }))
     .sort((a, b) => (a.value < b.value ? 1 : -1));
   const locationsData = vpns
-    .filter((vpn) => vpn.locations > 0)
-    .map((vpn) => ({ name: vpn.name, code: vpn.code, value: +vpn.locations }))
+    .filter((eachVpn) => eachVpn.locations > 0)
+    .map((eachVpn) => ({
+      name: eachVpn.name,
+      code: eachVpn.code,
+      value: +eachVpn.locations,
+    }))
     .sort((a, b) => (a.value < b.value ? 1 : -1));
   const devicesData = vpns
-    .filter((vpn) => vpn.devices !== null)
-    .map((vpn) => ({
-      name: vpn.name,
-      code: vpn.code,
-      value: vpn.devices === 'unlimited' ? 20 : +vpn.devices,
+    .filter((eachVpn) => eachVpn.devices !== null)
+    .map((eachVpn) => ({
+      name: eachVpn.name,
+      code: eachVpn.code,
+      value: eachVpn.devices === 'unlimited' ? 20 : +eachVpn.devices,
     }))
     .sort((a, b) => (a.value < b.value ? 1 : -1));
 

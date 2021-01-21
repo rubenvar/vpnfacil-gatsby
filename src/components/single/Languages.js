@@ -80,8 +80,9 @@ export function Languages({ vpn, vpns }) {
               mira{' '}
               {
                 vpns.filter(
-                  (item) =>
-                    item.appLanguage && item.appLanguage.includes('spanish')
+                  (eachVpn) =>
+                    eachVpn.appLanguage &&
+                    eachVpn.appLanguage.includes('spanish')
                 ).length
               }{' '}
               VPNs con la app en español
@@ -107,8 +108,8 @@ export function Languages({ vpn, vpns }) {
               mira{' '}
               {
                 vpns.filter(
-                  (item) =>
-                    item.uiLanguage && item.uiLanguage.includes('spanish')
+                  (eachVpn) =>
+                    eachVpn.uiLanguage && eachVpn.uiLanguage.includes('spanish')
                 ).length
               }{' '}
               VPNs con intefaz en español
@@ -134,9 +135,9 @@ export function Languages({ vpn, vpns }) {
               mira{' '}
               {
                 vpns.filter(
-                  (item) =>
-                    item.supportLanguage &&
-                    item.supportLanguage.includes('spanish')
+                  (eachVpn) =>
+                    eachVpn.supportLanguage &&
+                    eachVpn.supportLanguage.includes('spanish')
                 ).length
               }{' '}
               VPNs con soporte en español
