@@ -21,7 +21,7 @@ const Bar = styled.section`
     }
     nav {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       flex-wrap: wrap;
       align-items: center;
       #vpn-logo {
@@ -40,32 +40,47 @@ const Bar = styled.section`
           align-items: center;
         }
       }
-      span {
-        cursor: pointer;
-        transition: all 0.3s;
-        font-size: 17px;
-        color: var(--primary700);
-        padding: 3px 6px;
-        margin: 7px;
-        border: 1px solid var(--primary500);
-        border-radius: var(--buttonRadius);
-        @media only screen and (min-width: 580px) {
-          margin: 5px 15px;
-          padding: 0;
-          font-size: unset;
-          border: none;
-          border-radius: none;
-        }
-        @media only screen and (min-width: 720px) {
-          margin: 0;
-        }
-        &:hover {
-          color: var(--secondary600);
-        }
-      }
     }
   }
 `;
+
+const StyledNavItem = styled.button`
+  border: none;
+  box-shadow: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 17px;
+  color: var(--primary700);
+  padding: 3px 6px;
+  margin: 7px;
+  border: 1px solid var(--primary500);
+  border-radius: var(--buttonRadius);
+  @media only screen and (min-width: 580px) {
+    margin: 5px 15px;
+    padding: 0;
+    font-size: unset;
+    border: none;
+    border-radius: none;
+  }
+  @media only screen and (min-width: 920px) {
+    margin: 0;
+  }
+  &:hover {
+    color: var(--secondary600);
+  }
+  &:focus {
+    color: var(--secondary600);
+    box-shadow: 0 0 0 2px var(--secondary300);
+    outline: none;
+  }
+`;
+
+const NavItem = ({ goTo, text }) => (
+  <StyledNavItem onClick={() => scrollTo(`#${goTo}`)} type="button">
+    {text}
+  </StyledNavItem>
+);
 
 export function Nav({
   technicalExists = false,
@@ -83,47 +98,17 @@ export function Nav({
             <img src={`/logos/${code}.jpg`} alt={`Logo de ${name}`} />
             <h3>{name}</h3>
           </span>
-          <button onClick={() => scrollTo('#ratings')} type="button">
-            Puntuaciones
-          </button>
-          <button onClick={() => scrollTo('#numbers')} type="button">
-            En Cifras
-          </button>
-          <button onClick={() => scrollTo('#languages')} type="button">
-            Idiomas
-          </button>
-          <button onClick={() => scrollTo('#warranty')} type="button">
-            Garantía
-          </button>
-          <button onClick={() => scrollTo('#compatible')} type="button">
-            Compatibilidad
-          </button>
-          {testExists && (
-            <button onClick={() => scrollTo('#test')} type="button">
-              Pruebas
-            </button>
-          )}
-          <button onClick={() => scrollTo('#details')} type="button">
-            Detalles
-          </button>
-          {technicalExists && (
-            <button onClick={() => scrollTo('#technical')} type="button">
-              Técnico
-            </button>
-          )}
-          {pricingExists && (
-            <button onClick={() => scrollTo('#pricing')} type="button">
-              Precios
-            </button>
-          )}
-          {reviewExists && (
-            <button onClick={() => scrollTo('#review')} type="button">
-              Review
-            </button>
-          )}
-          <button onClick={() => scrollTo('#top')} type="button">
-            Volver arriba ⬆
-          </button>
+          <NavItem goTo="ratings" text="Puntuaciones" />
+          <NavItem goTo="numbers" text="En Cifras" />
+          <NavItem goTo="languages" text="Idiomas" />
+          <NavItem goTo="warranty" text="Garantía" />
+          <NavItem goTo="compatible" text="Compatibilidad" />
+          {testExists && <NavItem goTo="test" text="Pruebas" />}
+          <NavItem goTo="details" text="Detalles" />
+          {technicalExists && <NavItem goTo="technical" text="Técnico" />}
+          {pricingExists && <NavItem goTo="pricing" text="Precios" />}
+          {reviewExists && <NavItem goTo="review" text="Review" />}
+          <NavItem goTo="top" text="Volver arriba ⬆" />
         </nav>
       </div>
     </Bar>
@@ -137,4 +122,9 @@ Nav.propTypes = {
   reviewExists: PropTypes.bool.isRequired,
   technicalExists: PropTypes.bool.isRequired,
   testExists: PropTypes.bool.isRequired,
+};
+
+NavItem.propTypes = {
+  text: PropTypes.string,
+  goTo: PropTypes.string,
 };

@@ -1,9 +1,9 @@
 import React from 'react';
-import { IconChevronDown } from '@tabler/icons';
-import styled from 'styled-components';
 import { graphql, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import scrollTo from 'gatsby-plugin-smoothscroll';
+import styled from 'styled-components';
+import { IconChevronDown } from '@tabler/icons';
 
 const StyledHero = styled.section`
   background: hsla(270, 70%, 25%, 0.65);
@@ -14,6 +14,7 @@ const StyledHero = styled.section`
   text-align: center;
   position: relative;
 
+  /* position the gatsby-created-image in the bg */
   .gatsby-image-wrapper {
     position: absolute;
     width: 100%;
@@ -39,11 +40,20 @@ const StyledHero = styled.section`
     }
   }
 
-  span {
+  button {
     margin: 0 auto;
     cursor: pointer;
     svg {
       animation: down 2s infinite ease-in-out;
+    }
+    /* try to style button as no-button */
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    border: none;
+    &:focus {
+      border-radius: var(--buttonRadius);
+      box-shadow: 0 0 0 2px var(--secondary300);
     }
   }
 
