@@ -1,4 +1,5 @@
 export function formatMoney(amount, currency = 'USD') {
+  // eslint-disable-next-line no-param-reassign
   if (!currency) currency = 'USD';
   const options = {
     style: 'currency',
