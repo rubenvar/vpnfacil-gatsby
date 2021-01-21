@@ -80,7 +80,8 @@ export function Warranty({ vpn, vpns }) {
         <div className="see-more">
           {vpn.hasMoneyBack !== 'yes' && (
             <a href="/">
-              mira {vpns.filter((vpn) => vpn.hasMoneyBack === 'yes').length}{' '}
+              mira{' '}
+              {vpns.filter((eachVpn) => eachVpn.hasMoneyBack === 'yes').length}{' '}
               VPNs con reembolso
             </a>
           )}
@@ -111,7 +112,8 @@ export function Warranty({ vpn, vpns }) {
         <div className="see-more">
           {vpn.hasFreeTrial !== 'yes' && (
             <a href="/">
-              mira {vpns.filter((vpn) => vpn.hasFreeTrial === 'yes').length}{' '}
+              mira{' '}
+              {vpns.filter((eachVpn) => eachVpn.hasFreeTrial === 'yes').length}{' '}
               VPNs con prueba gratis
             </a>
           )}
