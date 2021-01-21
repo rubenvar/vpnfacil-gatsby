@@ -91,8 +91,8 @@ export default function VpnData() {
       <table>
         <thead>
           <tr>
-            <th />
-            <th />
+            <th aria-label="Imagen" />
+            <th aria-label="VPN" />
             <th className="servers">Servidores</th>
             <th className="countries">Países</th>
             <th className="devices">Disp.</th>
