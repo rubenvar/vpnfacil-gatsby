@@ -83,23 +83,47 @@ export function Nav({
             <img src={`/logos/${code}.jpg`} alt={`Logo de ${name}`} />
             <h3>{name}</h3>
           </span>
-          <span onClick={() => scrollTo('#ratings')}>Puntuaciones</span>
-          <span onClick={() => scrollTo('#numbers')}>En Cifras</span>
-          <span onClick={() => scrollTo('#languages')}>Idiomas</span>
-          <span onClick={() => scrollTo('#warranty')}>Garantía</span>
-          <span onClick={() => scrollTo('#compatible')}>Compatibilidad</span>
-          {testExists && <span onClick={() => scrollTo('#test')}>Pruebas</span>}
-          <span onClick={() => scrollTo('#details')}>Detalles</span>
+          <button onClick={() => scrollTo('#ratings')} type="button">
+            Puntuaciones
+          </button>
+          <button onClick={() => scrollTo('#numbers')} type="button">
+            En Cifras
+          </button>
+          <button onClick={() => scrollTo('#languages')} type="button">
+            Idiomas
+          </button>
+          <button onClick={() => scrollTo('#warranty')} type="button">
+            Garantía
+          </button>
+          <button onClick={() => scrollTo('#compatible')} type="button">
+            Compatibilidad
+          </button>
+          {testExists && (
+            <button onClick={() => scrollTo('#test')} type="button">
+              Pruebas
+            </button>
+          )}
+          <button onClick={() => scrollTo('#details')} type="button">
+            Detalles
+          </button>
           {technicalExists && (
-            <span onClick={() => scrollTo('#technical')}>Técnico</span>
+            <button onClick={() => scrollTo('#technical')} type="button">
+              Técnico
+            </button>
           )}
           {pricingExists && (
-            <span onClick={() => scrollTo('#pricing')}>Precios</span>
+            <button onClick={() => scrollTo('#pricing')} type="button">
+              Precios
+            </button>
           )}
           {reviewExists && (
-            <span onClick={() => scrollTo('#review')}>Review</span>
+            <button onClick={() => scrollTo('#review')} type="button">
+              Review
+            </button>
           )}
-          <span onClick={() => scrollTo('#top')}>Volver arriba ⬆</span>
+          <button onClick={() => scrollTo('#top')} type="button">
+            Volver arriba ⬆
+          </button>
         </nav>
       </div>
     </Bar>
