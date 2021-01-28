@@ -2,7 +2,7 @@
   "name": "vpnfacil",
   "private": true,
   "description": "A list of many VPN services. A static site built with Gatsby",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "scripts": {
     "dev": "gatsby develop",
     "build": "gatsby build",

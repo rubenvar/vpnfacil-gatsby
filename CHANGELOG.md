@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.3] - 2021-01-28
+
+### Removed
+
+- Removed _2020 ofertas_ post.
+
 ## [2.2.2] - 2021-01-21
 
 ### Added
