@@ -18,7 +18,7 @@ import {
 import SingleSection from '../components/single/Section';
 
 export default function SingleVpn({ data }) {
-  const { vpn } = data;
+  const { vpn, screenshot } = data;
   const allVpns = data.vpns.nodes;
 
   const testExists = false;
@@ -39,7 +39,7 @@ export default function SingleVpn({ data }) {
         <link rel="canonical" href={`https://vpnfacil.com/vpn/${vpn.slug}/`} />
         <meta property="og:title" content={title} />
       </Helmet>
-      <Top vpn={vpn} />
+      <Top vpn={vpn} screenshot={screenshot} />
       <Nav
         name={vpn.name}
         code={vpn.code}
@@ -70,7 +70,7 @@ export default function SingleVpn({ data }) {
 }
 
 export const query = graphql`
-  query($slug: String!) {
+  query($slug: String!, $codeRegex: String!) {
     vpn: googleListSheet(slug: { eq: $slug }) {
       id
       name
@@ -130,6 +130,11 @@ export const query = graphql`
       plan3Pricing
       planCurrency
     }
+    screenshot: cloudinaryMedia(secure_url: { regex: $codeRegex }) {
+      secure_url
+      created_at
+      width
+    }
     vpns: allGoogleListSheet {
       nodes {
         name
@@ -169,6 +174,7 @@ SingleVpn.propTypes = {
       slug: PropTypes.string.isRequired,
       hasSocks5: PropTypes.string,
     }).isRequired,
+    screenshot: PropTypes.object,
     vpns: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
   }),
 };

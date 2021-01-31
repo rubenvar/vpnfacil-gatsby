@@ -5,6 +5,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     query {
       vpns: allGoogleListSheet {
         nodes {
+          code
           slug
         }
       }
@@ -18,6 +19,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       component: require.resolve(`./src/templates/vpn.js`),
       context: {
         slug: vpn.slug,
+        // code as regex to get image in the single vpn template graphql query
+        codeRegex: `/${vpn.code}/`,
       },
     });
   });

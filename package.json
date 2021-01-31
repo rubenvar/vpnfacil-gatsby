@@ -40,6 +40,7 @@
     "gatsby-plugin-styled-components": "^3.9.0",
     "gatsby-remark-copy-linked-files": "^2.9.0",
     "gatsby-remark-images": "^3.10.0",
+    "gatsby-source-cloudinary": "^0.1.14",
     "gatsby-source-filesystem": "^2.10.0",
     "gatsby-source-google-spreadsheets": "^3.0.5",
     "gatsby-transformer-remark": "^2.15.0",
