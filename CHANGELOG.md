@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.4] - 2021-01-31
+
+### Added
+
+- Added logic to renew screenshot on page load (inactive yet).
+- Added `gatsby-source-cloudinary` plugin to manage cloudinary images from source (still will have to setup and use `gatsby-transformer-cloudinary`).
+
 ## [2.2.3] - 2021-01-28
 
 ### Removed
