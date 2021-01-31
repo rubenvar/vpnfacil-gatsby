@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.5] - 2021-01-31
+
+### Fixed
+
+- Fixed copyright year on footer, now it shows the current year automatically.
+- Added F059 redirect.
+
 ## [2.2.4] - 2021-01-31
 
 ### Added
