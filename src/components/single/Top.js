@@ -9,8 +9,8 @@ import { es } from 'date-fns/locale';
 import StarRating from '@rubenvara/react-star-rating';
 import Section from './Section';
 import Button from './Button';
-import { formatMoney, insertString } from '../../utils';
-// import { takeNewScreenshot } from '../../utils';
+// import { takeNewScreenshot, formatMoney } from '../../utils';
+import { formatMoney } from '../../utils';
 
 const StyledTop = styled.div`
   --vpnColor: ${({ vpnColor }) => vpnColor || 'black'};
@@ -79,44 +79,23 @@ const StyledTop = styled.div`
   }
 `;
 
-export function Top({ vpn }) {
-  const transf = 'c_scale,q_auto:eco,w_560';
-  let screenshot;
-  if (!vpn.screenshot) {
-    // use placeholder just in case
-    screenshot =
-      'https://res.cloudinary.com/rub54381/image/upload/v1604082868/vpnf/screenshots/placeholder.png';
-  } else {
-    // modify screenshot string to add transformation
-    screenshot = vpn.screenshot;
-    const after = screenshot.match(/\/v\d+\//);
-    const { index } = after;
-    if (index) screenshot = insertString(screenshot, index, `/${transf}`);
-  }
+export function Top({ vpn, screenshot }) {
+  const placeholderImage =
+    ' https://res.cloudinary.com/rub54381/image/upload/v1604082868/vpnf/screenshots/placeholder.png';
+  const screenshotUrl = screenshot
+    ? screenshot.secure_url.replace('f_auto', 'f_auto,w_560')
+    : placeholderImage;
 
-  //* All this works:
-  //* Stores screenshot to cloudinary
-  //* And saved url in VPN List V2 spreadsheet
-  //* But next load, screenshot is still empty until I rebuild the page and re-source it
-  //* So will need to find a better way to do it, probably run this on-build (pre-build)
-  // // Let's see if screenshot needs updating...
+  // Let's see if screenshot needs updating...
   // // check if there is screenshot:
-  // if (vpn.screenshot) {
-  //   const existingScreenshot = vpn.screenshot;
-  //   console.log({ existingScreenshot });
-  //   // get link, get time with regex (it comes in seconds, not ms)
-  //   const taken = existingScreenshot.match(/\/v(\d+)\//)[1];
-  //   console.log({ taken });
-  //   const now = Math.round(Date.now() / 1000);
-  //   // calculate if it's older than 15 days
-  //   const max = 15 * 24 * 60 * 60;
-  //   const isOld = now - taken > max;
-  //   console.log({ isOld });
-  //   // if it's recent, do nothing
-  //   // if it's old, call lambda
-  //   if (isOld) takeNewScreenshot(vpn.code, vpn.baseLink);
+  // if (screenshot) {
+  //   // compare dates, check if its older than 30 days
+  //   const createdAt = new Date(screenshot.created_at).getTime();
+  //   const today = new Date().getTime();
+  //   const isOlder = today - createdAt > 30 * 24 * 60 * 60 * 1000;
+  //   if (isOlder) takeNewScreenshot(vpn.code, vpn.baseLink);
   // } else if (vpn.screenshot === null) {
-  //   // if no screenshot, take one
+  //     // if no screenshot, take one
   //   console.log('screenshot is empty, I make a new one');
   //   takeNewScreenshot(vpn.code, vpn.baseLink);
   // }
@@ -207,7 +186,7 @@ export function Top({ vpn }) {
             title={`Accede a ${vpn.name}`}
           >
             <img
-              src={screenshot}
+              src={screenshotUrl}
               alt={`Página principal de ${vpn.name}`}
               title={`Accede a ${vpn.name}`}
             />
@@ -250,4 +229,5 @@ Top.propTypes = {
     screenshot: PropTypes.string,
     updated: PropTypes.string,
   }),
+  screenshot: PropTypes.object,
 };
