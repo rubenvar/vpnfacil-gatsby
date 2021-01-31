@@ -20,7 +20,7 @@ const StyledFooter = styled.footer`
 export default function Footer() {
   return (
     <StyledFooter>
-      <p className="copy">Copyright ©2020 VPN Fácil</p>
+      <p className="copy">Copyright ©{new Date().getFullYear()} VPN Fácil</p>
       <p>
         Diseño web por{' '}
         <a
