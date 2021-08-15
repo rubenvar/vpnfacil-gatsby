@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/display-name */
 const React = require('react');
-
-require('fontsource-ubuntu/latin.css');
-require('fontsource-quicksand/latin.css');
-require('fontsource-audiowide/latin.css');
+require('@fontsource/ubuntu/latin.css');
+require('@fontsource/quicksand/latin.css');
+require('@fontsource/audiowide/latin.css');
 
 const { ViewProvider, OrderProvider, MenuProvider } = require('./src/context');
 const Layout = require('./src/components/Layout').default;
