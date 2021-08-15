@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+## [2.3.0] - 2021-08-15
+
+### Added
+
+- Added site version in footer.
+
+### Changed
+
+- Updated dev flags.
+- Updated dependencies. Migrated to `@fontsource/...`. Gatsby 3.
+
 ## [2.2.5] - 2021-01-31
 
 ### Fixed
