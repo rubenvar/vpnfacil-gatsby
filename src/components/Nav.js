@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'gatsby';
 import { useWindowWidth } from '@react-hook/window-size';
+// TODO do it like this instead https://stackoverflow.com/questions/61274365/allow-component-to-detect-route-change-in-gatsby
 import { globalHistory } from '@reach/router';
 
 import { MenuContext } from '../context/MenuContext';
