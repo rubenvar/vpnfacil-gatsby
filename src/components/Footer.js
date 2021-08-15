@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { version } from '../../package.json';
 
 const StyledFooter = styled.footer`
   padding: 2em 2em 20px;
@@ -22,7 +23,7 @@ export default function Footer() {
     <StyledFooter>
       <p className="copy">Copyright ©{new Date().getFullYear()} VPN Fácil</p>
       <p>
-        Diseño web por{' '}
+        v{version} · Diseño web por{' '}
         <a
           href="https://platanoplatano.com"
           target="_blank"
