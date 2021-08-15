@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'gatsby';
-
 import PropTypes from 'prop-types';
 import {
   IconCertificate,
@@ -10,8 +9,8 @@ import {
   IconFileSearch,
   IconCloudDownload,
 } from '@tabler/icons';
-
 import StarRating from '@rubenvara/react-star-rating';
+
 import StyledCard from './styles/StyledCard';
 import CardNumbers from './CardNumbers';
 
@@ -158,7 +157,7 @@ Card.propTypes = {
     appLanguage: PropTypes.string,
     code: PropTypes.string.isRequired,
     color: PropTypes.string,
-    compatIndex: PropTypes.string,
+    compatIndex: PropTypes.number,
     countries: PropTypes.number,
     devices: PropTypes.string,
     hasMoneyBack: PropTypes.string,
