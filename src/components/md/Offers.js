@@ -5,24 +5,24 @@ import OfferCard from './OfferCard';
 
 const texts = {
   F001: {
-    subtitle: '💰 69% descuento',
+    subtitle: '🚀 el más rápido',
     comment:
-      'O sea, pagas ahora 75,60 euros (en vez de 244€) y tienes VPN para dos años!',
+      'O sea, pagas ahora 78,85 euros (en vez de 254€) y tienes VPN para dos años!',
   },
   F004: {
-    subtitle: '🎁 te regalan 2 meses',
-    comment: 'Por 60 euros tienes una de las mejores VPN para dos años enteros',
+    subtitle: '🎁 te regalan 3 meses',
+    comment: 'Por 70€ (en lugar de 455) tienes una de las mejores VPN para 3 años enteros',
   },
   F019: {
-    subtitle: '🚀 el más Barato',
-    comment: 'Pagas ahora menos de 50 euritos, y tienes VPN para 2 añazos',
+    subtitle: '💰 más Barato',
+    comment: 'Pagas ahora 53 euritos, y tienes VPN para 2 añazos (+2 meses)',
   },
 };
 
 const vpnQuery = graphql`
   query {
     vpns: allGoogleListSheet(
-      filter: { code: { in: ["F001", "F004", "F019"] } }
+      filter: { code: { in: ["F001", "F019", "F004"] } }
     ) {
       nodes {
         name
