@@ -31,6 +31,14 @@ const ComparativaContainer = styled(TableContainer)`
         width: 11%;
       }
     }
+    .name {
+      a {
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
     .servers,
     .countries,
     .devices {
@@ -54,7 +62,7 @@ const ComparativaContainer = styled(TableContainer)`
 `;
 
 const vpnQuery = graphql`
-  query MyQuery {
+  query vpnQuery {
     vpns: allGoogleListSheet(sort: { fields: rating, order: DESC }, limit: 10) {
       nodes {
         name
@@ -114,7 +122,11 @@ export default function VpnData() {
                   alt={`Logo de ${vpn.name}`}
                 />
               </td>
-              <td className="name">{vpn.name}</td>
+              <td className="name">
+                <a href={vpn.link} target="_blank" rel="noreferrer">
+                  {vpn.name.replace('Private Internet Access', 'Private Int...')}
+                </a>
+              </td>
               <td className="servers">{vpn.servers || '-'}</td>
               <td className="countries">{vpn.countries}</td>
               <td className="devices">
@@ -145,7 +157,7 @@ export default function VpnData() {
                 {vpn.hasNoLogs === 'yes' ? '✅' : '❌'}
               </td>
               <td className="mas-info">
-                <a href={vpn.link}>Más info</a>
+                <a href={vpn.link} target="_blank" rel="noreferrer">Más info</a>
               </td>
             </tr>
           ))}
