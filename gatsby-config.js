@@ -117,7 +117,13 @@ module.exports = {
         trackingIds: [process.env.GA_TAG],
       },
     },
-    `@sentry/gatsby`,
+    {
+      resolve: "@sentry/gatsby",
+      options: {
+        dsn: process.env.SENTRY_DSN,
+        sampleRate: 1.0, // Adjust this value in production
+      },
+    },
     {
       resolve: `gatsby-source-cloudinary`,
       options: {
