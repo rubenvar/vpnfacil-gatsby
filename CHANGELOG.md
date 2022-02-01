@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [2.4.1] - 2022-02-01
+
+### Added
+
+- Added redirect to ofertas 2022.
+- Added Sentry config.
+
+### Changed
+
+- Update offers: tweak offer card styling and reorder by price.
+- Updated comparativa to 2022.
+- Updated ofertas 2022.
+
+### Fixed
+
+- Fixed ExpressVPN aff link.
+
 ## [2.4.0] - 2022-02-01
 
 ### Added
@@ -14,6 +31,7 @@ All notable changes to this project will be documented in this file.
 
 - Upgraded to Gatsby 4. No problem! 🚀
 - Use new gatsby image plugin.
+- Updated all dependencies.
 
 ## [2.3.0] - 2021-08-15
 
