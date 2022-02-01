@@ -1,6 +1,5 @@
 import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
-import Img from 'gatsby-image';
+import { StaticImage } from 'gatsby-plugin-image';
 import scrollTo from 'gatsby-plugin-smoothscroll';
 import styled from 'styled-components';
 import { IconChevronDown } from '@tabler/icons';
@@ -15,7 +14,7 @@ const StyledHero = styled.section`
   position: relative;
 
   /* position the gatsby-created-image in the bg */
-  .gatsby-image-wrapper {
+  .image-wrapper {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -77,23 +76,14 @@ const StyledHero = styled.section`
 `;
 
 export default function Hero() {
-  const data = useStaticQuery(graphql`
-    query {
-      backgroundImage: file(relativePath: { eq: "bg.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 1600) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    }
-  `);
   return (
-    // <div class="hero" style="--hero-bg: url({bg})">
     <StyledHero className="hero">
-      <Img
-        style={{ position: 'absolute' }}
-        fluid={data.backgroundImage.childImageSharp.fluid}
+      <StaticImage
+        src="../images/bg.jpg"
+        alt="Consigue aquí el mejor VPN"
+        loading="eager"
+        layout="fullWidth"
+        className="image-wrapper"
       />
       <p>
         Necesitas un VPN para ser <strong>libre</strong> en internet
