@@ -4,9 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [2.4.0] - 2022-02-01
+
 ### Added
 
 - Added a `.node-version` file for Netlify deploys.
+
+### Changed
+
+- Upgraded to Gatsby 4. No problem! 🚀
+- Use new gatsby image plugin.
 
 ## [2.3.0] - 2021-08-15
 
