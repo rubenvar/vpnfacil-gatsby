@@ -13,9 +13,7 @@ module.exports = {
   },
   flags: {
     PRESERVE_FILE_DOWNLOAD_CACHE: process.env.NODE_ENV === 'development',
-    DEV_SSR: process.env.NODE_ENV === 'development',
     FAST_DEV: process.env.NODE_ENV === 'development',
-    DEV_WEBPACK_CACHE: process.env.NODE_ENV === 'development',
     PARALLEL_SOURCING: process.env.NODE_ENV === 'development',
   },
   plugins: [
