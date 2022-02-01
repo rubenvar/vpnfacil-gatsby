@@ -30,7 +30,7 @@ export default function Button({
   text = 'Ver Oferta',
 }) {
   return (
-    <a href={link}>
+    <a href={link} target="_blank" rel="noreferrer nofollow">
       <StyledButton type="button" className={main ? 'main' : 'light'}>
         {text}
       </StyledButton>

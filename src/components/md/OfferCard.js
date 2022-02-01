@@ -9,7 +9,7 @@ export default function OfferCard({ vpn, subtitle, comment }) {
   return (
     <StyledOfferCard>
       <h3 className="title">
-        {vpn.name}: {subtitle}
+        <a href={vpn.link} target="_blank" rel="noreferrer nofollow">{vpn.name}: {subtitle}</a>
       </h3>
       <div className="info">
         <div className="text">

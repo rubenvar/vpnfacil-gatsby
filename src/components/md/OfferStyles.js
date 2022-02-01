@@ -15,6 +15,13 @@ export const StyledOfferCard = styled.article`
     background-color: white;
   }
   h3.title {
+    a {
+      color: inherit;
+      text-decoration: none;
+      &:hover {
+        color: var(--primary700);
+      }
+    }
     margin: 0 0 15px;
   }
   .info {
