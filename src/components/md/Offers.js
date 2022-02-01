@@ -23,6 +23,7 @@ const vpnQuery = graphql`
   query {
     vpns: allGoogleListSheet(
       filter: { code: { in: ["F001", "F019", "F004"] } }
+      sort: { fields: plan3Pricing, order: DESC }
     ) {
       nodes {
         name
