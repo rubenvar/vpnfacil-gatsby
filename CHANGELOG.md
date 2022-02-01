@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- Added a `.node-version` file for Netlify deploys.
+
 ## [2.3.0] - 2021-08-15
 
 ### Added
