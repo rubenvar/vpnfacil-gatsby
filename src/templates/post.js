@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 
@@ -42,9 +41,9 @@ const StyledPost = styled.div`
   }
 `;
 
-export default function PostTemplate({ data }) {
-  const { frontmatter, body } = data.post;
-  const { seoTitle, title, excerpt, slug, textDate, rawDate } = frontmatter;
+export default function PostTemplate({ data, children }) {
+  const { seoTitle, title, excerpt, slug, textDate, rawDate } =
+    data.post.frontmatter;
   return (
     <>
       <Helmet>
@@ -60,9 +59,7 @@ export default function PostTemplate({ data }) {
             Actualizado: <time dateTime={rawDate}>{textDate}</time>
           </p>
         </header>
-        <article className="blog-post">
-          <MDXRenderer>{body}</MDXRenderer>
-        </article>
+        <article className="blog-post">{children}</article>
       </StyledPost>
     </>
   );
@@ -70,13 +67,13 @@ export default function PostTemplate({ data }) {
 
 PostTemplate.propTypes = {
   data: PropTypes.object,
+  children: PropTypes.object,
 };
 
 export const pageQuery = graphql`
-  query($slug: String!) {
+  query ($slug: String!) {
     post: mdx(frontmatter: { slug: { eq: $slug } }) {
       id
-      body
       frontmatter {
         textDate: date(formatString: "D [de] MMMM, YYYY", locale: "es-ES")
         rawDate: date(formatString: "YYYY-MM-DD")

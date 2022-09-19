@@ -1,3 +1,6 @@
+const vpnTemplate = require.resolve('./src/templates/vpn.js');
+const postTemplate = require.resolve(`./src/templates/post.js`);
+
 exports.createPages = async ({ actions, graphql, reporter }) => {
   // 1. Create VPN pages from graphQL query
   // get all slugs
@@ -16,7 +19,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   vpns.data.vpns.nodes.forEach((vpn) => {
     actions.createPage({
       path: `/vpn/${vpn.slug}`,
-      component: require.resolve(`./src/templates/vpn.js`),
+      component: vpnTemplate,
       context: {
         slug: vpn.slug,
         // code as regex to get image in the single vpn template graphql query
@@ -34,6 +37,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           frontmatter {
             slug
           }
+          internal {
+            contentFilePath
+          }
         }
       }
     }
@@ -48,7 +54,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   posts.data.allPosts.nodes.forEach((post) => {
     actions.createPage({
       path: `/guias/${post.frontmatter.slug}`,
-      component: require.resolve(`./src/templates/post.js`),
+      component: `${postTemplate}?__contentFilePath=${post.internal.contentFilePath}`,
       context: {
         slug: post.frontmatter.slug,
       },
