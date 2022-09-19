@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV || 'production'}`,
 });
@@ -69,6 +70,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
+        mdxOptions: {
+          remarkPlugins: [require(`remark-gfm`)],
+        },
         gatsbyRemarkPlugins: [
           `gatsby-remark-copy-linked-files`,
           {
@@ -141,12 +145,6 @@ module.exports = {
     //     apiKey: process.env.CLOUDINARY_API_KEY,
     //     apiSecret: process.env.CLOUDINARY_API_SECRET,
     //     uploadFolder: 'vpnf/gatsby-cloudinary',
-    //   },
-    // },
-    // {
-    //   resolve: "@sentry/gatsby",
-    //   options: {
-    //     tracesSampleRate: 1,
     //   },
     // },
   ],
