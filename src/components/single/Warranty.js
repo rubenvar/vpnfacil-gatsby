@@ -142,7 +142,7 @@ Warranty.propTypes = {
     freeTrialDays: PropTypes.string,
     hasFreeTrial: PropTypes.string,
     hasMoneyBack: PropTypes.string,
-    moneyBackDays: PropTypes.string,
+    moneyBackDays: PropTypes.number,
     name: PropTypes.string.isRequired,
   }),
   vpns: PropTypes.array,

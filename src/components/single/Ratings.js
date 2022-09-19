@@ -103,12 +103,12 @@ export function Ratings({ vpn }) {
 
 Ratings.propTypes = {
   vpn: PropTypes.shape({
-    featuresRating: PropTypes.string,
-    priceRating: PropTypes.string,
-    privacyRating: PropTypes.string,
+    featuresRating: PropTypes.number,
+    priceRating: PropTypes.number,
+    privacyRating: PropTypes.number,
     rating: PropTypes.number,
-    speedRating: PropTypes.string,
-    supportRating: PropTypes.string,
-    useRating: PropTypes.string,
+    speedRating: PropTypes.number,
+    supportRating: PropTypes.number,
+    useRating: PropTypes.number,
   }),
 };

@@ -113,10 +113,10 @@ export function Pricing({ vpn }) {
                     </>
                   )}
                 </h3>
-                <p clas="row">
+                <p className="row">
                   {formatMoney(plan.price, plan.currency)} <span>al mes</span>
                 </p>
-                <p clas="row">
+                <p className="row">
                   {plan.total !== plan.price ? (
                     <>
                       {formatMoney(plan.total, plan.currency)}{' '}
@@ -126,7 +126,7 @@ export function Pricing({ vpn }) {
                     '-'
                   )}
                 </p>
-                <p clas="row">
+                <p className="row">
                   {plan.discount ? (
                     <>
                       {formatPercent(plan.discount)} <span>ahorro</span>
@@ -147,12 +147,12 @@ export function Pricing({ vpn }) {
 Pricing.propTypes = {
   vpn: PropTypes.shape({
     link: PropTypes.string,
-    plan1Length: PropTypes.string,
-    plan1Pricing: PropTypes.string,
-    plan2Length: PropTypes.string,
-    plan2Pricing: PropTypes.string,
-    plan3Length: PropTypes.string,
-    plan3Pricing: PropTypes.string,
+    plan1Length: PropTypes.number,
+    plan1Pricing: PropTypes.number,
+    plan2Length: PropTypes.number,
+    plan2Pricing: PropTypes.number,
+    plan3Length: PropTypes.number,
+    plan3Pricing: PropTypes.number,
     planCurrency: PropTypes.string,
   }),
 };

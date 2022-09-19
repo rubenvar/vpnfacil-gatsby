@@ -9,7 +9,9 @@ export default function OfferCard({ vpn, subtitle, comment }) {
   return (
     <StyledOfferCard>
       <h3 className="title">
-        <a href={vpn.link} target="_blank" rel="noreferrer nofollow">{vpn.name}: {subtitle}</a>
+        <a href={vpn.link} target="_blank" rel="noreferrer nofollow">
+          {vpn.name}: {subtitle}
+        </a>
       </h3>
       <div className="info">
         <div className="text">
@@ -68,9 +70,9 @@ OfferCard.propTypes = {
     code: PropTypes.string,
     link: PropTypes.string,
     name: PropTypes.string,
-    plan1Pricing: PropTypes.string,
-    plan3Length: PropTypes.string,
-    plan3Pricing: PropTypes.string,
+    plan1Pricing: PropTypes.number,
+    plan3Length: PropTypes.number,
+    plan3Pricing: PropTypes.number,
     planCurrency: PropTypes.string,
     rating: PropTypes.number,
   }),
