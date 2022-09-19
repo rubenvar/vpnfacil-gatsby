@@ -1,7 +1,7 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
 
 import {
   Top,
@@ -16,6 +16,36 @@ import {
   Pricing,
 } from '../components/single';
 import SingleSection from '../components/single/Section';
+import SEO from '../components/SEO';
+
+export const Head = ({ data: { vpn } }) => {
+  const title = `${
+    vpn.name
+  }: Revisión y Detalles para Elegir en ${new Date().getFullYear()} ~ VPNFácil`;
+
+  return (
+    <SEO>
+      <title id="title">{title}</title>
+      <meta id="description" name="description" content={vpn.description} />
+      <link
+        id="canonical"
+        rel="canonical"
+        href={`https://vpnfacil.com/vpn/${vpn.slug}/`}
+      />
+      <meta id="ogTitle" property="og:title" content={title} />
+      <meta
+        id="ogUrl"
+        property="og:url"
+        content={`https://vpnfacil.com/vpn/${vpn.slug}/`}
+      />
+      <meta
+        id="ogDescription"
+        property="og:description"
+        content={vpn.description}
+      />
+    </SEO>
+  );
+};
 
 export default function SingleVpn({ data }) {
   const { vpn, screenshot } = data;
@@ -27,18 +57,8 @@ export default function SingleVpn({ data }) {
     !!vpn.protocolsList || !!vpn.hasSocks5 || !!vpn.moreServices;
   const pricingExists = !!vpn.plan3Pricing;
 
-  const title = `${
-    vpn.name
-  }: Revisión y Detalles para Elegir en ${new Date().getFullYear()} ~ VPNFácil`;
-
   return (
     <>
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={vpn.description} />
-        <link rel="canonical" href={`https://vpnfacil.com/vpn/${vpn.slug}/`} />
-        <meta property="og:title" content={title} />
-      </Helmet>
       <Top vpn={vpn} screenshot={screenshot} />
       <Nav
         name={vpn.name}
@@ -162,6 +182,10 @@ export const query = graphql`
   }
 `;
 
+// Head.propTypes = {
+//   data: PropTypes.object,
+// };
+
 SingleVpn.propTypes = {
   data: PropTypes.shape({
     vpn: PropTypes.shape({
@@ -169,7 +193,7 @@ SingleVpn.propTypes = {
       description: PropTypes.string,
       moreServices: PropTypes.string,
       name: PropTypes.string.isRequired,
-      plan3Pricing: PropTypes.string,
+      plan3Pricing: PropTypes.number,
       protocolsList: PropTypes.string,
       slug: PropTypes.string.isRequired,
       hasSocks5: PropTypes.string,

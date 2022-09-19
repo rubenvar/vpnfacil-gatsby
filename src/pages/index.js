@@ -5,6 +5,7 @@ import { graphql } from 'gatsby';
 import Hero from '../components/Hero';
 import Bar from '../components/Bar';
 import List from '../components/List';
+import SEO from '../components/SEO';
 
 export default function AllVpns({ data }) {
   const allVpns = data.allGoogleListSheet.nodes;
@@ -17,6 +18,8 @@ export default function AllVpns({ data }) {
     </>
   );
 }
+
+export const Head = () => <SEO />;
 
 export const query = graphql`
   query {

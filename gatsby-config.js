@@ -85,7 +85,6 @@ module.exports = {
     },
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-styled-components`,
-    `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sitemap`, // the best sitemap solution in the world!!!
     {
       resolve: `gatsby-plugin-manifest`,

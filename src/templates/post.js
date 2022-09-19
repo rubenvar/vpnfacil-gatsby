@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
-import { Helmet } from 'react-helmet';
+import SEO from '../components/SEO';
 
 const StyledPost = styled.div`
   max-width: 100%;
@@ -41,27 +42,42 @@ const StyledPost = styled.div`
   }
 `;
 
-export default function PostTemplate({ data, children }) {
-  const { seoTitle, title, excerpt, slug, textDate, rawDate } =
-    data.post.frontmatter;
+export function Head({ data }) {
+  const { seoTitle, title, excerpt, slug } = data.post.frontmatter;
+
   return (
-    <>
-      <Helmet>
-        <title>{seoTitle || `${title} ~ VPNFácil`}</title>
-        <meta name="description" content={excerpt} />
-        <link rel="canonical" href={`https://vpnfacil.com/guias/${slug}/`} />
-        <meta property="og:title" content={seoTitle || title} />
-      </Helmet>
-      <StyledPost>
-        <header>
-          <h1>{title}</h1>
-          <p>
-            Actualizado: <time dateTime={rawDate}>{textDate}</time>
-          </p>
-        </header>
-        <article className="blog-post">{children}</article>
-      </StyledPost>
-    </>
+    <SEO>
+      <title id="title">{seoTitle || `${title} ~ VPNFácil`}</title>
+      <meta id="description" name="description" content={excerpt} />
+      <link
+        id="canonical"
+        rel="canonical"
+        href={`https://vpnfacil.com/guias/${slug}/`}
+      />
+      <meta id="ogTitle" property="og:title" content={seoTitle || title} />
+      <meta
+        id="ogUrl"
+        property="og:url"
+        content={`https://vpnfacil.com/guias/${slug}/`}
+      />
+      <meta id="ogDescription" property="og:description" content={excerpt} />
+    </SEO>
+  );
+}
+
+export default function PostTemplate({ data, children }) {
+  const { title, textDate, rawDate } = data.post.frontmatter;
+
+  return (
+    <StyledPost>
+      <header>
+        <h1>{title}</h1>
+        <p>
+          Actualizado: <time dateTime={rawDate}>{textDate}</time>
+        </p>
+      </header>
+      <article className="blog-post">{children}</article>
+    </StyledPost>
   );
 }
 

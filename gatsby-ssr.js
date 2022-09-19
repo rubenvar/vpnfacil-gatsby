@@ -16,3 +16,7 @@ exports.wrapPageElement = ({ element, props }) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <Layout {...props}>{element}</Layout>
 );
+
+exports.onRenderBody = ({ setHtmlAttributes }) => {
+  setHtmlAttributes({ lang: 'es' });
+};
