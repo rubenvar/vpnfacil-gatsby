@@ -70,7 +70,7 @@ export default function SingleVpn({ data }) {
 }
 
 export const query = graphql`
-  query($slug: String!, $codeRegex: String!) {
+  query ($slug: String!, $codeRegex: String!) {
     vpn: googleListSheet(slug: { eq: $slug }) {
       id
       name
@@ -79,7 +79,7 @@ export const query = graphql`
       description
       color
       link
-      baseLink
+      # baseLink
       screenshot
       privacyRating
       priceRating

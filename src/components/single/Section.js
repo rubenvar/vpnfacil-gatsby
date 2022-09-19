@@ -44,7 +44,7 @@ export default function SingleSection({ children, wide = false, id = '' }) {
 }
 
 SingleSection.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   id: PropTypes.string,
   wide: PropTypes.bool,
 };

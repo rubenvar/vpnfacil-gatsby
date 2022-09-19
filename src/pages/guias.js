@@ -113,7 +113,6 @@ export const blogQuery = graphql`
           date(formatString: "YYYY-MM-DD")
           slug
           title
-          seoTitle
           excerpt
         }
       }

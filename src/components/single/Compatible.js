@@ -169,7 +169,7 @@ Compatible.propTypes = {
   vpn: PropTypes.shape({
     hasBrowserPlugins: PropTypes.string,
     browserList: PropTypes.string,
-    compatIndex: PropTypes.string,
+    compatIndex: PropTypes.number,
     compatList: PropTypes.string,
     name: PropTypes.any,
     hasNas: PropTypes.string,
