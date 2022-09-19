@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [2.5.0] - 2022-09-19
+
+### Changed
+
+- Updated dependencies (big update).
+- Added `remark-gfm` for tables, etc. after update `mdx-js`.
+- Adjusted proptypes.
+- Replaced `react-helmet` with native gatsby.
+- Migrated to `gatsby-plugin-mdx` v4.
+
 ## [2.4.1] - 2022-02-01
 
 ### Added
@@ -62,7 +72,7 @@ All notable changes to this project will be documented in this file.
 
 ### Removed
 
-- Removed _2020 ofertas_ post.
+- Removed *2020 ofertas* post.
 
 ## [2.2.2] - 2021-01-21
 
@@ -96,8 +106,8 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-- Updated _3 mejores ofertas_ post to 2021.
-- Updated _10 mejores vpn_ post to 2021.
+- Updated *3 mejores ofertas* post to 2021.
+- Updated *10 mejores vpn* post to 2021.
 - Updated other posts.
 
 ## [2.1.1] - 2021-01-15
@@ -170,7 +180,7 @@ All notable changes to this project will be documented in this file.
 
 ### Removed
 
-- Previous _fluid header_ was created with [svelte-fluid-header](https://github.com/collardeau/svelte-fluid-header). Remove it as it's not used anymore.
+- Previous *fluid header* was created with [svelte-fluid-header](https://github.com/collardeau/svelte-fluid-header). Remove it as it's not used anymore.
 
 ## [1.13.0] - 2020-11-01
 
